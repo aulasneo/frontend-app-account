@@ -150,6 +150,7 @@ function EditableField(props) {
                   }}
                   disabledStates={[]}
                 />
+                {/*Agrege una clase al Button*/}
                 <Button
                   className="buttonCancel"
                   variant="outline-primary"

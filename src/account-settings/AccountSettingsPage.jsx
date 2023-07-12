@@ -726,8 +726,8 @@ class AccountSettingsPage extends React.Component {
           <h2 className="section-heading">
             {this.props.intl.formatMessage(messages['account.settings.section.site.preferences'])}
           </h2>
-
-          <BetaLanguageBanner />
+          
+          <BetaLanguageBanner /> 
           <EditableField
             name="siteLanguage"
             type="select"
