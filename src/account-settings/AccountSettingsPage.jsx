@@ -496,6 +496,7 @@ class AccountSettingsPage extends React.Component {
     const hasLinkedTPA = findIndex(this.props.tpaProviders, provider => provider.connected) >= 0;
     return (
       <>
+       {/*
         <div className="account-section" id="basic-information" ref={this.navLinkRefs['#basic-information']}>
           {
             this.props.mostRecentVerifiedName
@@ -720,7 +721,7 @@ class AccountSettingsPage extends React.Component {
             {...editableFieldProps}
           />
         </div>
-
+        */}
         <div className="account-section" id="site-preferences" ref={this.navLinkRefs['#site-preferences']}>
           <h2 className="section-heading">
             {this.props.intl.formatMessage(messages['account.settings.section.site.preferences'])}
@@ -736,7 +737,7 @@ class AccountSettingsPage extends React.Component {
             helpText={this.props.intl.formatMessage(messages['account.settings.field.site.language.help.text'])}
             {...editableFieldProps}
           />
-          <EditableField
+          {/*<EditableField
             name="time_zone"
             type="select"
             value={this.props.formValues.time_zone}
@@ -750,8 +751,9 @@ class AccountSettingsPage extends React.Component {
               this.handleSubmit(formId, value || null);
             }}
           />
+          */}
         </div>
-
+  {/*
         <div className="account-section" id="linked-accounts" ref={this.navLinkRefs['#linked-accounts']}>
           <h2 className="section-heading">{this.props.intl.formatMessage(messages['account.settings.section.linked.accounts'])}</h2>
           <p>
@@ -769,7 +771,7 @@ class AccountSettingsPage extends React.Component {
             hasLinkedTPA={hasLinkedTPA}
           />
         </div>
-
+      */}
       </>
     );
   }
@@ -800,17 +802,18 @@ class AccountSettingsPage extends React.Component {
     return (
       <div className="page__account-settings container-fluid py-5">
         {this.renderDuplicateTpaProviderMessage()}
-        <h1 className="mb-4">
-          {this.props.intl.formatMessage(messages['account.settings.page.heading'])}
+        <h1 className="titleLanguage">
+        {/* {this.props.intl.formatMessage(messages['account.settings.page.heading'])}*/}
+          Language
         </h1>
         <div>
           <div className="row">
-            <div className="col-md-3">
+        {/* <div className="col-md-3">
               <JumpNav
                 displayDemographicsLink={this.props.formValues.shouldDisplayDemographicsSection}
-              />
-            </div>
-            <div className="col-md-9">
+               />
+            </div>*/}
+            <div className="col-md-12">
               {loading ? this.renderLoading() : null}
               {loaded ? this.renderContent() : null}
               {loadingError ? this.renderError() : null}

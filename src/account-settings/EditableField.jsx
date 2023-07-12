@@ -151,6 +151,7 @@ function EditableField(props) {
                   disabledStates={[]}
                 />
                 <Button
+                  className="buttonCancel"
                   variant="outline-primary"
                   onClick={handleCancel}
                 >
@@ -166,7 +167,7 @@ function EditableField(props) {
             <div className="d-flex align-items-start">
               <h6 aria-level="3">{label}</h6>
               {isEditable ? (
-                <Button variant="link" onClick={handleEdit} className="ml-3">
+                <Button variant="link" onClick={handleEdit} className="buttonEditable">
                   <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />{intl.formatMessage(messages['account.settings.editable.field.action.edit'])}
                 </Button>
               ) : null}
