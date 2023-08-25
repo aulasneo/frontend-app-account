@@ -66,6 +66,7 @@ class AccountSettingsPage extends React.Component {
 
     this.navLinkRefs = {
       '#basic-information': React.createRef(),
+      '#reset-password': React.createRef(),
       '#profile-information': React.createRef(),
       '#demographics-information': React.createRef(),
       '#social-media': React.createRef(),
@@ -146,28 +147,13 @@ class AccountSettingsPage extends React.Component {
     })),
   }));
 
-  sortDates = (a, b) => {
-    const aTimeSinceEpoch = new Date(a).getTime();
-    const bTimeSinceEpoch = new Date(b).getTime();
-
-    return bTimeSinceEpoch - aTimeSinceEpoch;
-  }
-
-  sortVerifiedNameRecords = verifiedNameHistory => {
-    if (Array.isArray(verifiedNameHistory)) {
-      return [...verifiedNameHistory].sort(this.sortDates);
-    }
-
-    return [];
-  }
-
   handleEditableFieldChange = (name, value) => {
     this.props.updateDraft(name, value);
-  }
+  };
 
   handleSubmit = (formId, values) => {
     this.props.saveSettings(formId, values);
-  }
+  };
 
   handleSubmitProfileName = (formId, values) => {
     if (Object.keys(this.props.drafts).includes('useVerifiedNameForCerts')) {
@@ -195,7 +181,7 @@ class AccountSettingsPage extends React.Component {
     } else {
       this.props.saveSettings(formId, values);
     }
-  }
+  };
 
   isEditable(fieldName) {
     return !this.props.staticFields.includes(fieldName);
@@ -280,7 +266,7 @@ class AccountSettingsPage extends React.Component {
     }
 
     return this.props.intl.formatMessage(messages[messageString]);
-  }
+  };
 
   renderVerifiedNameSuccessMessage = (verifiedName, created) => {
     const dateValue = new Date(created).valueOf();
@@ -295,7 +281,7 @@ class AccountSettingsPage extends React.Component {
         body={this.props.intl.formatMessage(messages['account.settings.field.name.verified.success.message'])}
       />
     );
-  }
+  };
 
   renderVerifiedNameFailureMessage = (verifiedName, created) => {
     const dateValue = new Date(created).valueOf();
@@ -326,7 +312,7 @@ class AccountSettingsPage extends React.Component {
         }
       />
     );
-  }
+  };
 
   renderVerifiedNameSubmittedMessage = (willCertNameChange) => (
     <Alert
@@ -344,7 +330,7 @@ class AccountSettingsPage extends React.Component {
         }
       </p>
     </Alert>
-  )
+  );
 
   renderVerifiedNameMessage = verifiedNameRecord => {
     const {
@@ -385,7 +371,7 @@ class AccountSettingsPage extends React.Component {
       default:
         return null;
     }
-  }
+  };
 
   renderVerifiedNameIcon = (status) => {
     switch (status) {
@@ -396,7 +382,7 @@ class AccountSettingsPage extends React.Component {
       default:
         return null;
     }
-  }
+  };
 
   renderVerifiedNameHelpText = (status, proctoredExamId) => {
     let messageStr = 'account.settings.field.name.verified.help.text';
@@ -421,7 +407,7 @@ class AccountSettingsPage extends React.Component {
     }
 
     return this.props.intl.formatMessage(messages[messageStr]);
-  }
+  };
 
   renderEmptyStaticFieldMessage() {
     if (this.isManagedProfile()) {
@@ -494,18 +480,19 @@ class AccountSettingsPage extends React.Component {
     );
 
     const hasLinkedTPA = findIndex(this.props.tpaProviders, provider => provider.connected) >= 0;
+
     return (
       <>
-        <div className="account-section" id="basic-information" ref={this.navLinkRefs['#basic-information']}>
+        <div className="account-section pt-3 mb-5" id="basic-information" ref={this.navLinkRefs['#basic-information']}>
           {
             this.props.mostRecentVerifiedName
             && this.renderVerifiedNameMessage(this.props.mostRecentVerifiedName)
           }
-
-          <h2 className="section-heading">
+{/*General Information*/}
+         {/* <h2 className="section-heading h4 mb-3">
             {this.props.intl.formatMessage(messages['account.settings.section.account.information'])}
-          </h2>
-          <p>{this.props.intl.formatMessage(messages['account.settings.section.account.information.description'])}</p>
+          </h2> 
+          <p>{this.props.intl.formatMessage(messages['account.settings.section.account.information.description'])}</p>*/}
           {this.renderManagedProfileMessage()}
 
           {this.renderNameChangeModal()}
@@ -594,8 +581,9 @@ class AccountSettingsPage extends React.Component {
             isEditable={this.isEditable('email')}
             {...editableFieldProps}
           />
-          {this.renderSecondaryEmailField(editableFieldProps)}
-          <ResetPassword email={this.props.formValues.email} />
+          {/* {this.renderSecondaryEmailField(editableFieldProps)}
+          // <ResetPassword email={this.props.formValues.email} />
+          */}
           {(!getConfig().ENABLE_COPPA_COMPLIANCE)
             && (
             <EditableField
@@ -640,17 +628,52 @@ class AccountSettingsPage extends React.Component {
             />
             )}
         </div>
+        
+ {/*Password*/}  
+      
+        <div className="account-section pt-3 mb-5" id="reset-password" ref={this.navLinkRefs['#reset-password']}>
+          {
+            this.props.mostRecentVerifiedName
+            && this.renderVerifiedNameMessage(this.props.mostRecentVerifiedName)
+          }
+          {localStorage.getItem('submittedDOB')
+            && (
+            <OneTimeDismissibleAlert
+              id="updated-dob"
+              variant="success"
+              icon={CheckCircle}
+              header={this.props.intl.formatMessage(messages['account.settings.field.dob.form.success'])}
+              body=""
+            />
+            )}
+          
+          {/* <h2 className="section-heading h4 mb-3">
+          //   {this.props.intl.formatMessage(messages['account.settings.section.account.information.resetpassword'])}
+          // </h2>*/}
+          <p className="description-account-setings">{this.props.intl.formatMessage(messages['account.settings.section.account.information.resetpassword.description'])}</p>
+          {this.renderManagedProfileMessage()}
 
-        <div className="account-section" id="profile-information" ref={this.navLinkRefs['#profile-information']}>
-          <h2 className="section-heading">
-            {this.props.intl.formatMessage(messages['account.settings.section.profile.information'])}
-          </h2>
+          {this.renderNameChangeModal()}
+
+           {this.renderSecondaryEmailField(editableFieldProps)}
+           <ResetPassword email={this.props.formValues.email} />
+        </div>
+
+{/*Profile Information*/}
+
+        <div className="account-section pt-3 mb-5" id="profile-information" ref={this.navLinkRefs['#profile-information']}>
+          
+          {/* <h2 className="section-heading h4 mb-3">
+          //   {this.props.intl.formatMessage(messages['account.settings.section.profile.information'])}
+          // </h2>*/}
 
           <EditableField
             name="level_of_education"
             type="select"
             value={this.props.formValues.level_of_education}
-            options={educationLevelOptions}
+            options={getConfig().ENABLE_COPPA_COMPLIANCE
+              ? educationLevelOptions.filter(option => option.value !== 'el')
+              : educationLevelOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.education'])}
             emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.education.empty'])}
             {...editableFieldProps}
@@ -684,10 +707,13 @@ class AccountSettingsPage extends React.Component {
             )}
         </div>
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && this.renderDemographicsSection()}
-        <div className="account-section" id="social-media">
-          <h2 className="section-heading">
-            {this.props.intl.formatMessage(messages['account.settings.section.social.media'])}
-          </h2>
+
+{/*Social Media*/}    
+
+        <div className="account-section pt-3 mb-5" id="social-media">
+          {/* <h2 className="section-heading h4 mb-3">
+          //   {this.props.intl.formatMessage(messages['account.settings.section.social.media'])}
+          // </h2>*/}
           <p>
             {this.props.intl.formatMessage(
               messages['account.settings.section.social.media.description'],
@@ -721,10 +747,12 @@ class AccountSettingsPage extends React.Component {
           />
         </div>
 
-        <div className="account-section" id="site-preferences" ref={this.navLinkRefs['#site-preferences']}>
-          <h2 className="section-heading">
-            {this.props.intl.formatMessage(messages['account.settings.section.site.preferences'])}
-          </h2>
+{/*Site Preferences*/}
+
+        <div className="account-section pt-3 mb-5" id="site-preferences" ref={this.navLinkRefs['#site-preferences']}>
+          {/* <h2 className="section-heading h4 mb-3">
+          //   {this.props.intl.formatMessage(messages['account.settings.section.site.preferences'])}
+          // </h2> */}
 
           <BetaLanguageBanner />
           <EditableField
@@ -752,8 +780,10 @@ class AccountSettingsPage extends React.Component {
           />
         </div>
 
-        <div className="account-section" id="linked-accounts" ref={this.navLinkRefs['#linked-accounts']}>
-          <h2 className="section-heading">{this.props.intl.formatMessage(messages['account.settings.section.linked.accounts'])}</h2>
+{/*Linked Accounts */}
+
+        <div className="account-section pt-3 mb-5" id="linked-accounts" ref={this.navLinkRefs['#linked-accounts']}>
+          {/* <h2 className="section-heading h4 mb-3">{this.props.intl.formatMessage(messages['account.settings.section.linked.accounts'])}</h2> */}
           <p>
             {this.props.intl.formatMessage(
               messages['account.settings.section.linked.accounts.description'],
@@ -762,8 +792,10 @@ class AccountSettingsPage extends React.Component {
           </p>
           <ThirdPartyAuth />
         </div>
+        
+{/*Delete Account*/}
 
-        <div className="account-section" id="delete-account" ref={this.navLinkRefs['#delete-account']}>
+        <div className="account-section pt-3 mb-5" id="delete-account" ref={this.navLinkRefs['#delete-account']}>
           <DeleteAccount
             isVerifiedAccount={this.props.isActive}
             hasLinkedTPA={hasLinkedTPA}
@@ -800,17 +832,17 @@ class AccountSettingsPage extends React.Component {
     return (
       <div className="page__account-settings container-fluid py-5">
         {this.renderDuplicateTpaProviderMessage()}
-        <h1 className="mb-4">
+        <h1 className="title-account">
           {this.props.intl.formatMessage(messages['account.settings.page.heading'])}
         </h1>
         <div>
-          <div className="row">
+          <div className="page-account">
             <div className="col-md-3">
               <JumpNav
                 displayDemographicsLink={this.props.formValues.shouldDisplayDemographicsSection}
               />
             </div>
-            <div className="col-md-9">
+            <div className="col-md-7 w-100">
               {loading ? this.renderLoading() : null}
               {loaded ? this.renderContent() : null}
               {loadingError ? this.renderError() : null}

@@ -1,18 +1,24 @@
-import React from 'react';
+import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { breakpoints, useWindowSize } from '@edx/paragon';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { NavHashLink } from 'react-router-hash-link';
 import Scrollspy from 'react-scrollspy';
-
-import { getConfig } from '@edx/frontend-platform';
-import PropTypes from 'prop-types';
 import messages from './AccountSettingsPage.messages';
 
-function JumpNav({ intl, displayDemographicsLink }) {
+const JumpNav = ({
+  intl,
+  displayDemographicsLink,
+}) => {
+  const stickToTop = useWindowSize().width > breakpoints.small.minWidth;
   return (
-    <div className="jump-nav">
+    <div className={classNames('jump-nav', { 'jump-nav-sm position-sticky pt-3': stickToTop })}>
       <Scrollspy
         items={[
           'basic-information',
+          'reset-password',
           'profile-information',
           'demographics-information',
           'social-media',
@@ -23,40 +29,45 @@ function JumpNav({ intl, displayDemographicsLink }) {
         className="list-unstyled"
         currentClassName="font-weight-bold"
       >
-        <li>
+        <li className="li-menu">
           <NavHashLink to="#basic-information">
             {intl.formatMessage(messages['account.settings.section.account.information'])}
           </NavHashLink>
         </li>
-        <li>
+        <li className="li-menu">
+          <NavHashLink to="#reset-password">
+            {intl.formatMessage(messages['account.settings.section.account.information.resetpassword'])}
+          </NavHashLink>
+        </li>
+        <li className="li-menu">
           <NavHashLink to="#profile-information">
             {intl.formatMessage(messages['account.settings.section.profile.information'])}
           </NavHashLink>
         </li>
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && displayDemographicsLink
           && (
-          <li>
+          <li className="li-menu">
             <NavHashLink to="#demographics-information">
               {intl.formatMessage(messages['account.settings.section.demographics.information'])}
             </NavHashLink>
           </li>
           )}
-        <li>
+        <li className="li-menu">
           <NavHashLink to="#social-media">
             {intl.formatMessage(messages['account.settings.section.social.media'])}
           </NavHashLink>
         </li>
-        <li>
+        <li className="li-menu">
           <NavHashLink to="#site-preferences">
             {intl.formatMessage(messages['account.settings.section.site.preferences'])}
           </NavHashLink>
         </li>
-        <li>
+        <li className="li-menu">
           <NavHashLink to="#linked-accounts">
             {intl.formatMessage(messages['account.settings.section.linked.accounts'])}
           </NavHashLink>
         </li>
-        <li>
+        <li className="li-menu">
           <NavHashLink to="#delete-account">
             {intl.formatMessage(messages['account.settings.jump.nav.delete.account'])}
           </NavHashLink>
@@ -64,7 +75,7 @@ function JumpNav({ intl, displayDemographicsLink }) {
       </Scrollspy>
     </div>
   );
-}
+};
 
 JumpNav.propTypes = {
   intl: intlShape.isRequired,

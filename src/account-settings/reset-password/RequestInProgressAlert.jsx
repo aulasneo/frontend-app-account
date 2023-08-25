@@ -7,7 +7,7 @@ import Alert from '../Alert';
 
 const RequestInProgressAlert = () => (
   <Alert
-    className="alert-warning mt-n2"
+    className="alert-warning mt-n1"
     icon={<FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />}
   >
     <FormattedMessage

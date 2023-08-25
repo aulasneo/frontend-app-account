@@ -72,9 +72,9 @@ export class DeleteAccount extends React.Component {
 
     return (
       <div>
-        <h2 className="section-heading">
+        {/*<h2 className="section-heading h4 mb-3">
           {intl.formatMessage(messages['account.settings.delete.account.header'])}
-        </h2>
+        </h2>*/}
         <p>{intl.formatMessage(messages['account.settings.delete.account.subheader'])}</p>
         <p>
           {intl.formatMessage(
@@ -92,8 +92,10 @@ export class DeleteAccount extends React.Component {
           <PrintingInstructions />
         </p>
         <p className="text-danger h6">
-          {intl.formatMessage(messages['account.settings.delete.account.text.warning'],
-            { siteName: getConfig().SITE_NAME })}
+          {intl.formatMessage(
+            messages['account.settings.delete.account.text.warning'],
+            { siteName: getConfig().SITE_NAME },
+          )}
         </p>
         <p>
           <Hyperlink destination="https://support.edx.org/hc/en-us/sections/115004139268-Manage-Your-Account-Settings">

@@ -117,7 +117,7 @@ function EditableField(props) {
                 invalidMessage={error}
                 helpText={helpText}
               >
-                <label className="h6 d-block" htmlFor={id}>{label}</label>
+                <label className="label" htmlFor={id}>{label}</label>
                 <Input
                   data-hj-suppress
                   name={name}
@@ -151,6 +151,7 @@ function EditableField(props) {
                   disabledStates={[]}
                 />
                 <Button
+                  className="button-cancel"
                   variant="outline-primary"
                   onClick={handleCancel}
                 >
@@ -167,7 +168,7 @@ function EditableField(props) {
               <h6 aria-level="3">{label}</h6>
               {isEditable ? (
                 <Button variant="link" onClick={handleEdit} className="ml-3">
-                  <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />{intl.formatMessage(messages['account.settings.editable.field.action.edit'])}
+                  <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
                 </Button>
               ) : null}
             </div>
