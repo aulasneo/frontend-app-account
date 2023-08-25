@@ -13,7 +13,7 @@ const messages = defineMessages({
   },
   'account.settings.delete.account.text.1': {
     id: 'account.settings.delete.account.text.1',
-    defaultMessage: 'Please note: Deletion of your account and personal data is permanent and cannot be undone. {siteName} will not be able to recover your account or the data that is deleted.',
+    defaultMessage: 'Deletion of your account and personal data is permanent and cannot be undone. {siteName} will not be able to recover your account or the data that is deleted.',
     description: 'A message in the user account deletion area',
   },
   'account.settings.delete.account.text.2': {
@@ -33,7 +33,8 @@ const messages = defineMessages({
   },
   'account.settings.delete.account.text.warning': {
     id: 'account.settings.delete.account.text.warning',
-    defaultMessage: 'Warning: Account deletion is permanent. Please read the above carefully before proceeding. This is an irreversible action, and you will no longer be able to use the same email on {siteName}.',
+    //defaultMessage: 'Warning: Account deletion is permanent. Please read the above carefully before proceeding. This is an irreversible action, and you will no longer be able to use the same email on {siteName}.',
+    defaultMessage: 'Account deletion is permanent. Please read the above carefully before proceeding. This is an irreversible action, and you will no longer be able to use the same email on {siteName}.',
     description: 'A message in the user account deletion area',
   },
   'account.settings.delete.account.text.change.instead': {

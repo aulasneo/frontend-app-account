@@ -29,45 +29,45 @@ const JumpNav = ({
         className="list-unstyled"
         currentClassName="font-weight-bold"
       >
-        <li className="li-menu">
+        <li>
           <NavHashLink to="#basic-information">
             {intl.formatMessage(messages['account.settings.section.account.information'])}
           </NavHashLink>
         </li>
-        <li className="li-menu">
+        <li>
           <NavHashLink to="#reset-password">
             {intl.formatMessage(messages['account.settings.section.account.information.resetpassword'])}
           </NavHashLink>
         </li>
-        <li className="li-menu">
+        <li>
           <NavHashLink to="#profile-information">
             {intl.formatMessage(messages['account.settings.section.profile.information'])}
           </NavHashLink>
         </li>
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && displayDemographicsLink
           && (
-          <li className="li-menu">
+          <li>
             <NavHashLink to="#demographics-information">
               {intl.formatMessage(messages['account.settings.section.demographics.information'])}
             </NavHashLink>
           </li>
           )}
-        <li className="li-menu">
+        <li>
           <NavHashLink to="#social-media">
             {intl.formatMessage(messages['account.settings.section.social.media'])}
           </NavHashLink>
         </li>
-        <li className="li-menu">
+        <li>
           <NavHashLink to="#site-preferences">
             {intl.formatMessage(messages['account.settings.section.site.preferences'])}
           </NavHashLink>
         </li>
-        <li className="li-menu">
+        <li>
           <NavHashLink to="#linked-accounts">
             {intl.formatMessage(messages['account.settings.section.linked.accounts'])}
           </NavHashLink>
         </li>
-        <li className="li-menu">
+        <li>
           <NavHashLink to="#delete-account">
             {intl.formatMessage(messages['account.settings.jump.nav.delete.account'])}
           </NavHashLink>

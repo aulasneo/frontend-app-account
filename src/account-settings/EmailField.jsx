@@ -112,7 +112,7 @@ function EmailField(props) {
               invalidMessage={error}
               helpText={helpText}
             >
-              <label className="h6 d-block" htmlFor={id}>{label}</label>
+              <label className="label" htmlFor={id}>{label}</label>
               <Input
                 data-hj-suppress
                 name={name}
@@ -122,10 +122,11 @@ function EmailField(props) {
                 onChange={handleChange}
               />
             </ValidationFormGroup>
-            <p>
+            <div className="buttons">
+              <p className="button-stateful-cont">
               <StatefulButton
                 type="submit"
-                className="mr-2"
+                className="buttonSave"
                 state={saveState}
                 labels={{
                   default: intl.formatMessage(messages['account.settings.editable.field.action.save']),
@@ -142,13 +143,19 @@ function EmailField(props) {
                 }}
                 disabledStates={[]}
               />
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" rx="12" fill="white"/>
+                  <path d="M10.5 7.5L15 12L10.5 16.5" stroke="#3F64E7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+               </p>
               <Button
+                className="button-cancel"
                 variant="outline-primary"
                 onClick={handleCancel}
               >
                 {intl.formatMessage(messages['account.settings.editable.field.action.cancel'])}
               </Button>
-            </p>
+              </div>
           </form>
         ),
         default: (
@@ -158,7 +165,7 @@ function EmailField(props) {
               {isEditable ? (
                 <Button variant="link" onClick={handleEdit} className="ml-3">
                   <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
-                  {intl.formatMessage(messages['account.settings.editable.field.action.edit'])}
+                  {/*{intl.formatMessage(messages['account.settings.editable.field.action.edit'])}*/}
                 </Button>
               ) : null}
             </div>

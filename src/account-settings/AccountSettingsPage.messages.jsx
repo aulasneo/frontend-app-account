@@ -552,7 +552,7 @@ const messages = defineMessages({
   },
   'account.settings.editable.field.action.save': {
     id: 'account.settings.editable.field.action.save',
-    defaultMessage: 'Save',
+    defaultMessage: 'Save changes',
     description: 'The save button on an editable field',
   },
   'account.settings.editable.field.action.cancel': {
