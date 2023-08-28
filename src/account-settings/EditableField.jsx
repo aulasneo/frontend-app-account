@@ -110,14 +110,14 @@ function EditableField(props) {
       cases={{
         editing: (
           <>
-            <form onSubmit={handleSubmit}>
+            <form className="form-account" onSubmit={handleSubmit}>
               <ValidationFormGroup
                 for={id}
                 invalid={error != null}
                 invalidMessage={error}
                 helpText={helpText}
               >
-                <label className="label" htmlFor={id}>{label}</label>
+                <label className="label-account" htmlFor={id}>{label}</label>
                 <Input
                   data-hj-suppress
                   name={name}
@@ -131,8 +131,8 @@ function EditableField(props) {
                 <>{others.children}</>
               </ValidationFormGroup>
               <div className="buttons">
-              <p className="button-stateful-cont">
-                <StatefulButton
+              <div className="button-cont">
+                <Button
                   className="buttonSave"
                   type="submit"
                   state={saveState}
@@ -150,18 +150,22 @@ function EditableField(props) {
                     if (saveState === 'pending') { e.preventDefault(); }
                   }}
                   disabledStates={[]}
-                />
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="24" height="24" rx="12" fill="white"/>
-                  <path d="M10.5 7.5L15 12L10.5 16.5" stroke="#3F64E7" stroke-linecap="round" stroke-linejoin="round"/>
+                >
+                <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.875 14.25L10.3125 21L28.125 2.25" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-               </p>
+               </Button>
+               </div>
                 <Button
                   className="button-cancel"
                   variant="outline-primary"
                   onClick={handleCancel}
                 >
-                  {intl.formatMessage(messages['account.settings.editable.field.action.cancel'])}
+                <svg width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.7812 4.6875L4.21875 25.3125" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4.21875 4.6875L22.7812 25.3125" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                 {/* {intl.formatMessage(messages['account.settings.editable.field.action.cancel'])}*/}
                 </Button>
               </div>
             </form>
@@ -169,19 +173,83 @@ function EditableField(props) {
           </>
         ),
         default: (
-          <div className="form-group">
-            <div className="d-flex align-items-start">
-              <h6 aria-level="3">{label}</h6>
-              {isEditable ? (
-                <Button variant="link" onClick={handleEdit} className="ml-3">
-                  <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
+          <>
+            <form className="form-account" onSubmit={handleSubmit}>
+              <ValidationFormGroup
+                for={id}
+                invalid={error != null}
+                invalidMessage={error}
+                helpText={helpText}
+              >
+                <label className="label-account" htmlFor={id}>{label}</label>
+                <Input
+                  data-hj-suppress
+                  name={name}
+                  id={id}
+                  type={type}
+                  value={value}
+                  onChange={handleChange}
+                  options={inputOptions}
+                  {...others}
+                />
+                <>{others.children}</>
+              </ValidationFormGroup>
+              <div className="buttons">
+              <div className="button-cont">
+                <Button
+                  className="buttonSave"
+                  type="submit"
+                  state={saveState}
+                  labels={{
+                    default: intl.formatMessage(messages['account.settings.editable.field.action.save']),
+                  }}
+                  onClick={(e) => {
+                    // Swallow clicks if the state is pending.
+                    // We do this instead of disabling the button to prevent
+                    // it from losing focus (disabled elements cannot have focus).
+                    // Disabling it would causes upstream issues in focus management.
+                    // Swallowing the onSubmit event on the form would be better, but
+                    // we would have to add that logic for every field given our
+                    // current structure of the application.
+                    if (saveState === 'pending') { e.preventDefault(); }
+                  }}
+                  disabledStates={[]}
+                >
+                <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.875 14.25L10.3125 21L28.125 2.25" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+               </Button>
+               </div>
+                <Button
+                  className="button-cancel"
+                  variant="outline-primary"
+                  onClick={handleCancel}
+                >
+                <svg width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22.7812 4.6875L4.21875 25.3125" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4.21875 4.6875L22.7812 25.3125" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                 {/* {intl.formatMessage(messages['account.settings.editable.field.action.cancel'])}*/}
                 </Button>
-              ) : null}
-            </div>
-            <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{renderValue(value)}</p>
-            <p className="small text-muted mt-n2">{renderConfirmationMessage() || helpText}</p>
-          </div>
+              </div>
+            </form>
+            {['name', 'verified_name'].includes(name) && <CertificatePreference fieldName={name} />}
+          </>
         ),
+        
+        //   <div className="form-group">
+        //     <div className="label-title">
+        //       <h6 aria-level="3">{label}</h6>
+        //       {isEditable ? (
+        //         <Button variant="link" onClick={handleEdit} className="ml-3">
+        //           <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
+        //         </Button>
+        //       ) : null}
+        //     </div>
+        //     <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{renderValue(value)}</p>
+        //     <p className="small text-muted mt-n2">{renderConfirmationMessage() || helpText}</p>
+        //   </div>
+        // ),
       }}
     />
   );

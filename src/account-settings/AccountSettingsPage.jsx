@@ -99,7 +99,6 @@ class AccountSettingsPage extends React.Component {
       }
     }
   }
-
   // NOTE: We need 'locale' for the memoization in getLocalizedTimeZoneOptions.  Don't remove it!
   // eslint-disable-next-line no-unused-vars
   getLocalizedTimeZoneOptions = memoize((timeZoneOptions, countryTimeZoneOptions, locale) => {
@@ -480,15 +479,17 @@ class AccountSettingsPage extends React.Component {
     );
 
     const hasLinkedTPA = findIndex(this.props.tpaProviders, provider => provider.connected) >= 0;
+    
+{/*General Information*--------------------------------------------------------------------*/}      
 
-    return (
+return (
       <>
+      {(global.location.hash === '#basic-information') ? 
         <div className="account-section pt-3 mb-5" id="basic-information" ref={this.navLinkRefs['#basic-information']}>
           {
             this.props.mostRecentVerifiedName
             && this.renderVerifiedNameMessage(this.props.mostRecentVerifiedName)
           }
-{/*General Information*/}
          {/* <h2 className="section-heading h4 mb-3">
             {this.props.intl.formatMessage(messages['account.settings.section.account.information'])}
           </h2> 
@@ -497,18 +498,33 @@ class AccountSettingsPage extends React.Component {
 
           {this.renderNameChangeModal()}
 
-          <EditableField
-            name="username"
-            type="text"
-            value={this.props.formValues.username}
-            label={this.props.intl.formatMessage(messages['account.settings.field.username'])}
-            helpText={this.props.intl.formatMessage(
-              messages['account.settings.field.username.help.text'],
-              { siteName: getConfig().SITE_NAME },
-            )}
-            isEditable={false}
-            {...editableFieldProps}
-          />
+          <div className="form-group-uneditable">
+          <label className="label-account-uneditable">Username</label>
+            <div className="label-title">
+              <h6 className="label-title-uneditable" aria-level="3">{this.props.formValues.username}</h6>
+            </div>
+          {/*   <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{this.props.formValues.username}</p>*/}
+           <p helpText={this.props.intl.formatMessage(
+               messages['account.settings.field.username.help.text'],
+               { siteName: getConfig().SITE_NAME },
+             )}
+           
+           className="small text-muted">{this.props.intl.formatMessage(messages['account.settings.field.username.help.text'])}</p>
+          </div>
+
+          {/* <EditableField
+          //   name="username"
+          //   type="text"
+          //   value={this.props.formValues.username}
+          //   label={this.props.intl.formatMessage(messages['account.settings.field.username'])}
+          //   helpText={this.props.intl.formatMessage(
+          //     messages['account.settings.field.username.help.text'],
+          //     { siteName: getConfig().SITE_NAME },
+          //   )}
+          //   isEditable={false}
+          //   {...editableFieldProps}
+          // />*/}
+          
           <EditableField
             name="name"
             type="text"
@@ -628,9 +644,14 @@ class AccountSettingsPage extends React.Component {
             />
             )}
         </div>
+        :
+        ""
+      }
         
- {/*Password*/}  
-      
+{/*--------------------------------------------------------------------------------------------*/}        
+       
+{/*Password------------------------------------------------------------------------------------*/}  
+     {(global.location.hash === '#reset-password') ? 
         <div className="account-section pt-3 mb-5" id="reset-password" ref={this.navLinkRefs['#reset-password']}>
           {
             this.props.mostRecentVerifiedName
@@ -658,9 +679,14 @@ class AccountSettingsPage extends React.Component {
            {this.renderSecondaryEmailField(editableFieldProps)}
            <ResetPassword email={this.props.formValues.email} />
         </div>
-
-{/*Profile Information*/}
-
+        :
+        ""
+      } 
+{/*--------------------------------------------------------------------------------------------*/}
+        
+{/*Profile Information ------------------------------------------------------------------------*/}
+      {(global.location.hash === '#profile-information') ? 
+        <>
         <div className="account-section pt-3 mb-5" id="profile-information" ref={this.navLinkRefs['#profile-information']}>
           
           {/* <h2 className="section-heading h4 mb-3">
@@ -675,7 +701,7 @@ class AccountSettingsPage extends React.Component {
               ? educationLevelOptions.filter(option => option.value !== 'el')
               : educationLevelOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.education'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.education.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.education.empty'])}
             {...editableFieldProps}
           />
           <EditableField
@@ -684,7 +710,7 @@ class AccountSettingsPage extends React.Component {
             value={this.props.formValues.gender}
             options={genderOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.gender'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.gender.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.gender.empty'])}
             {...editableFieldProps}
           />
           <EditableField
@@ -693,7 +719,7 @@ class AccountSettingsPage extends React.Component {
             value={this.props.formValues.language_proficiencies}
             options={languageProficiencyOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies.empty'])}
             {...editableFieldProps}
           />
           {getConfig().COACHING_ENABLED
@@ -707,9 +733,14 @@ class AccountSettingsPage extends React.Component {
             )}
         </div>
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && this.renderDemographicsSection()}
-
-{/*Social Media*/}    
-
+        </>
+        :
+        ""
+      }
+{/*--------------------------------------------------------------------------------------------*/}      
+      
+{/*Social Media -------------------------------------------------------------------------------*/}    
+      {(global.location.hash === '#social-media') ?
         <div className="account-section pt-3 mb-5" id="social-media">
           {/* <h2 className="section-heading h4 mb-3">
           //   {this.props.intl.formatMessage(messages['account.settings.section.social.media'])}
@@ -726,7 +757,7 @@ class AccountSettingsPage extends React.Component {
             type="text"
             value={this.props.formValues.social_link_linkedin}
             label={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.linkedin'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.linkedin.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.linkedin.empty'])}
             {...editableFieldProps}
           />
           <EditableField
@@ -734,7 +765,7 @@ class AccountSettingsPage extends React.Component {
             type="text"
             value={this.props.formValues.social_link_facebook}
             label={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.facebook'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.facebook.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.facebook.empty'])}
             {...editableFieldProps}
           />
           <EditableField
@@ -742,13 +773,17 @@ class AccountSettingsPage extends React.Component {
             type="text"
             value={this.props.formValues.social_link_twitter}
             label={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.twitter'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.twitter.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.twitter.empty'])}
             {...editableFieldProps}
           />
         </div>
+        :
+        ""
+      }  
+{/*--------------------------------------------------------------------------------------------*/}
 
-{/*Site Preferences*/}
-
+{/*Site Preferences ---------------------------------------------------------------------------*/}
+      {(global.location.hash === '#site-preferences') ? 
         <div className="account-section pt-3 mb-5" id="site-preferences" ref={this.navLinkRefs['#site-preferences']}>
           {/* <h2 className="section-heading h4 mb-3">
           //   {this.props.intl.formatMessage(messages['account.settings.section.site.preferences'])}
@@ -759,7 +794,7 @@ class AccountSettingsPage extends React.Component {
             name="siteLanguage"
             type="select"
             options={this.props.siteLanguageOptions}
-            value={this.props.siteLanguage.draft !== undefined ? this.props.siteLanguage.draft : this.context.locale}
+            // value={this.props.siteLanguage.draft !== undefined ? this.props.siteLanguage.draft : this.context.locale}
             label={this.props.intl.formatMessage(messages['account.settings.field.site.language'])}
             helpText={this.props.intl.formatMessage(messages['account.settings.field.site.language.help.text'])}
             {...editableFieldProps}
@@ -770,7 +805,7 @@ class AccountSettingsPage extends React.Component {
             value={this.props.formValues.time_zone}
             options={timeZoneOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.time.zone'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.time.zone.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.time.zone.empty'])}
             helpText={this.props.intl.formatMessage(messages['account.settings.field.time.zone.description'])}
             {...editableFieldProps}
             onSubmit={(formId, value) => {
@@ -779,9 +814,14 @@ class AccountSettingsPage extends React.Component {
             }}
           />
         </div>
+        :
+        ""
+      }
+        
+{/*--------------------------------------------------------------------------------------------*/} 
 
-{/*Linked Accounts */}
-
+{/*Linked Accounts ----------------------------------------------------------------------------*/}
+      {(global.location.hash === '#linked-accounts') ?  
         <div className="account-section pt-3 mb-5" id="linked-accounts" ref={this.navLinkRefs['#linked-accounts']}>
           {/* <h2 className="section-heading h4 mb-3">{this.props.intl.formatMessage(messages['account.settings.section.linked.accounts'])}</h2> */}
           <p>
@@ -792,16 +832,25 @@ class AccountSettingsPage extends React.Component {
           </p>
           <ThirdPartyAuth />
         </div>
-        
-{/*Delete Account*/}
-
+        :
+        ""
+      }
+{/*--------------------------------------------------------------------------------------------*/} 
+      
+{/*Delete Account------------------------------------------------------------------------------*/}
+      {(global.location.hash === '#delete-account') ? 
+        <>
         <div className="account-section pt-3 mb-5" id="delete-account" ref={this.navLinkRefs['#delete-account']}>
           <DeleteAccount
             isVerifiedAccount={this.props.isActive}
             hasLinkedTPA={hasLinkedTPA}
           />
         </div>
-
+        </>
+        :
+        ""
+      }
+{/*--------------------------------------------------------------------------------------------*/} 
       </>
     );
   }
@@ -837,12 +886,12 @@ class AccountSettingsPage extends React.Component {
         </h1>
         <div>
           <div className="page-account">
-            <div className="col-md-3">
+            <div className="col-md-4">
               <JumpNav
                 displayDemographicsLink={this.props.formValues.shouldDisplayDemographicsSection}
               />
             </div>
-            <div className="col-md-7 w-100">
+            <div className="col-md-6 w-100">
               {loading ? this.renderLoading() : null}
               {loaded ? this.renderContent() : null}
               {loadingError ? this.renderError() : null}

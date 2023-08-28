@@ -29,7 +29,7 @@ subscribe(APP_READY, () => {
         <Route path="/coaching_consent" component={CoachingConsent} />
         <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
           <Header />
-          <main className="flex-grow-1">
+          <main className="flex-grow-1 page-account">
             <Switch>
               <Route path="/id-verification" component={IdVerificationPage} />
               <Route exact path="/" component={AccountSettingsPage} />

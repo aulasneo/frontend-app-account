@@ -13,6 +13,7 @@ const JumpNav = ({
   displayDemographicsLink,
 }) => {
   const stickToTop = useWindowSize().width > breakpoints.small.minWidth;
+  
   return (
     <div className={classNames('jump-nav', { 'jump-nav-sm position-sticky pt-3': stickToTop })}>
       <Scrollspy
@@ -27,7 +28,7 @@ const JumpNav = ({
           'delete-account',
         ]}
         className="list-unstyled"
-        currentClassName="font-weight-bold"
+        currentClassName="font-weight-bold d-flex "
       >
         <li>
           <NavHashLink to="#basic-information">
