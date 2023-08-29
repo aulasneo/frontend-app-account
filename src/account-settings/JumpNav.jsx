@@ -31,45 +31,45 @@ const JumpNav = ({
         currentClassName="font-weight-bold d-flex "
       >
         <li>
-          <NavHashLink to="#basic-information">
+          <NavHashLink to="#basic-information" style={window.location.href.includes("#basic-information") ? {fontWeight:"700"} : {fontWeight:"300"}}>
             {intl.formatMessage(messages['account.settings.section.account.information'])}
           </NavHashLink>
         </li>
         <li>
-          <NavHashLink to="#reset-password">
+          <NavHashLink to="#reset-password" style={window.location.href.includes("#reset-password") ? {fontWeight:"700"} : {fontWeight:"300"}}>
             {intl.formatMessage(messages['account.settings.section.account.information.resetpassword'])}
           </NavHashLink>
         </li>
         <li>
-          <NavHashLink to="#profile-information">
+          <NavHashLink to="#profile-information" style={window.location.href.includes("#profile-information") ? {fontWeight:"700"} : {fontWeight:"300"}}>
             {intl.formatMessage(messages['account.settings.section.profile.information'])}
           </NavHashLink>
         </li>
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && displayDemographicsLink
           && (
           <li>
-            <NavHashLink to="#demographics-information">
+            <NavHashLink to="#demographics-information" style={window.location.href.includes("#demographics-information") ? {fontWeight:"700"} : {fontWeight:"300"}}>
               {intl.formatMessage(messages['account.settings.section.demographics.information'])}
             </NavHashLink>
           </li>
           )}
         <li>
-          <NavHashLink to="#social-media">
+          <NavHashLink to="#social-media" style={window.location.href.includes("#social-media") ? {fontWeight:"700"} : {fontWeight:"300"}}>
             {intl.formatMessage(messages['account.settings.section.social.media'])}
           </NavHashLink>
         </li>
         <li>
-          <NavHashLink to="#site-preferences">
+          <NavHashLink to="#site-preferences" style={window.location.href.includes("#site-preferences") ? {fontWeight:"700"} : {fontWeight:"300"}}>
             {intl.formatMessage(messages['account.settings.section.site.preferences'])}
           </NavHashLink>
         </li>
         <li>
-          <NavHashLink to="#linked-accounts">
+          <NavHashLink to="#linked-accounts" style={window.location.href.includes("#linked-accounts") ? {fontWeight:"700"} : {fontWeight:"300"}}>
             {intl.formatMessage(messages['account.settings.section.linked.accounts'])}
           </NavHashLink>
         </li>
         <li>
-          <NavHashLink to="#delete-account">
+          <NavHashLink to="#delete-account" style={window.location.href.includes("#delete-account") ? {fontWeight:"700"} : {fontWeight:"300"}}>
             {intl.formatMessage(messages['account.settings.jump.nav.delete.account'])}
           </NavHashLink>
         </li>

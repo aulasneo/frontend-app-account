@@ -88,12 +88,12 @@ const messages = defineMessages({
   },
   'account.settings.field.full.name': {
     id: 'account.settings.field.full.name',
-    defaultMessage: 'Full name',
+    defaultMessage: 'Full Name',
     description: 'Label for account settings name field.',
   },
   'account.settings.field.full.name.empty': {
     id: 'account.settings.field.full.name.empty',
-    defaultMessage: 'Add name',
+    defaultMessage: 'Add Name',
     description: 'Placeholder for empty account settings name field.',
   },
   'account.settings.field.full.name.help.text': {
@@ -223,7 +223,7 @@ const messages = defineMessages({
   },
   'account.settings.field.email': {
     id: 'account.settings.field.email',
-    defaultMessage: 'Email address (Sign in)',
+    defaultMessage: 'Sign in Email',
     description: 'Label for account settings email field.',
   },
   'account.settings.field.email.empty': {
@@ -263,17 +263,17 @@ const messages = defineMessages({
   },
   'account.settings.field.dob': {
     id: 'account.settings.field.dob',
-    defaultMessage: 'Year of birth',
+    defaultMessage: 'Year of Birth',
     description: 'Label for account settings year of birth field.',
   },
   'account.settings.field.dob.empty': {
     id: 'account.settings.field.dob.empty',
-    defaultMessage: 'Add year of birth',
+    defaultMessage: 'Add Year of Birth',
     description: 'Placeholder for empty account settings year of birth field.',
   },
   'account.settings.field.year_of_birth.options.empty': {
     id: 'account.settings.field.year_of_birth.options.empty',
-    defaultMessage: 'Select a year of birth',
+    defaultMessage: 'Select a Year of Birth',
     description: 'Option for empty value on account settings year of birth field.',
   },
   'account.settings.field.dob.month': {
@@ -288,12 +288,12 @@ const messages = defineMessages({
   },
   'account.settings.field.dob.month.default': {
     id: 'account.settings.field.month.year.default',
-    defaultMessage: 'Select month',
+    defaultMessage: 'Select Month',
     description: 'Default label for account settings month of birth field.',
   },
   'account.settings.field.dob.year.default': {
     id: 'account.settings.field.dob.year.default',
-    defaultMessage: 'Select year',
+    defaultMessage: 'Select Year',
     description: 'Default label for account settings year of birth field.',
   },
   'account.settings.field.dob.form.button': {

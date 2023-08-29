@@ -117,21 +117,9 @@ function EditableField(props) {
                 invalidMessage={error}
                 helpText={helpText}
               >
-                <label className="label-account" htmlFor={id}>{label}</label>
-                <Input
-                  data-hj-suppress
-                  name={name}
-                  id={id}
-                  type={type}
-                  value={value}
-                  onChange={handleChange}
-                  options={inputOptions}
-                  {...others}
-                />
-                <>{others.children}</>
-              </ValidationFormGroup>
               <div className="buttons">
-              <div className="button-cont">
+                <label className="label-account" htmlFor={id}>{label}</label>
+                <div className="button-cont">
                 <Button
                   className="buttonSave"
                   type="submit"
@@ -151,23 +139,34 @@ function EditableField(props) {
                   }}
                   disabledStates={[]}
                 >
-                <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1.875 14.25L10.3125 21L28.125 2.25" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 9.5L5.5 14L15 1.5" stroke="#2CBB7F" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                </Button>
-               </div>
                 <Button
                   className="button-cancel"
                   variant="outline-primary"
                   onClick={handleCancel}
                 >
-                <svg width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22.7812 4.6875L4.21875 25.3125" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M4.21875 4.6875L22.7812 25.3125" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.5 2.5L2.5 13.5" stroke="#B00020" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2.5 2.5L13.5 13.5" stroke="#B00020" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                 {/* {intl.formatMessage(messages['account.settings.editable.field.action.cancel'])}*/}
                 </Button>
+               </div>
               </div>
+                <Input
+                  data-hj-suppress
+                  name={name}
+                  id={id}
+                  type={type}
+                  value={value}
+                  onChange={handleChange}
+                  options={inputOptions}
+                  {...others}
+                />
+                <>{others.children}</>
+              </ValidationFormGroup>
             </form>
             {['name', 'verified_name'].includes(name) && <CertificatePreference fieldName={name} />}
           </>
@@ -181,7 +180,22 @@ function EditableField(props) {
                 invalidMessage={error}
                 helpText={helpText}
               >
+              <div className="button-cont">
                 <label className="label-account" htmlFor={id}>{label}</label>
+                <div className="buttons">
+                
+                <Button
+                  className="buttonSave"
+                  onClick={handleEdit}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 0.5L13.5 3.5L5 12L1 13L2 9L10.5 0.5Z" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.5 2.5L11.5 5.5" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </Button>
+               </div> 
+              </div>
+                
                 <Input
                   data-hj-suppress
                   name={name}
@@ -190,48 +204,11 @@ function EditableField(props) {
                   value={value}
                   onChange={handleChange}
                   options={inputOptions}
+                  disabled
                   {...others}
                 />
                 <>{others.children}</>
               </ValidationFormGroup>
-              <div className="buttons">
-              <div className="button-cont">
-                <Button
-                  className="buttonSave"
-                  type="submit"
-                  state={saveState}
-                  labels={{
-                    default: intl.formatMessage(messages['account.settings.editable.field.action.save']),
-                  }}
-                  onClick={(e) => {
-                    // Swallow clicks if the state is pending.
-                    // We do this instead of disabling the button to prevent
-                    // it from losing focus (disabled elements cannot have focus).
-                    // Disabling it would causes upstream issues in focus management.
-                    // Swallowing the onSubmit event on the form would be better, but
-                    // we would have to add that logic for every field given our
-                    // current structure of the application.
-                    if (saveState === 'pending') { e.preventDefault(); }
-                  }}
-                  disabledStates={[]}
-                >
-                <svg width="30" height="24" viewBox="0 0 30 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1.875 14.25L10.3125 21L28.125 2.25" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-               </Button>
-               </div>
-                <Button
-                  className="button-cancel"
-                  variant="outline-primary"
-                  onClick={handleCancel}
-                >
-                <svg width="27" height="30" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22.7812 4.6875L4.21875 25.3125" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M4.21875 4.6875L22.7812 25.3125" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                 {/* {intl.formatMessage(messages['account.settings.editable.field.action.cancel'])}*/}
-                </Button>
-              </div>
             </form>
             {['name', 'verified_name'].includes(name) && <CertificatePreference fieldName={name} />}
           </>

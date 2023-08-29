@@ -504,14 +504,13 @@ return (
               <h6 className="label-title-uneditable" aria-level="3">{this.props.formValues.username}</h6>
             </div>
           {/*   <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{this.props.formValues.username}</p>*/}
-           <p helpText={this.props.intl.formatMessage(
-               messages['account.settings.field.username.help.text'],
-               { siteName: getConfig().SITE_NAME },
-             )}
-           
-           className="small text-muted">{this.props.intl.formatMessage(messages['account.settings.field.username.help.text'])}</p>
+            <p className="small text-muted">
+               {this.props.intl.formatMessage(messages['account.settings.field.username.help.text'],
+               { siteName: getConfig().SITE_NAME },)}
+            </p>
           </div>
 
+          <hr />
           {/* <EditableField
           //   name="username"
           //   type="text"
@@ -579,7 +578,7 @@ return (
               onSubmit={this.handleSubmitVerifiedName}
             />
             )}
-
+          <hr />
           <EmailField
             name="email"
             label={this.props.intl.formatMessage(messages['account.settings.field.email'])}
@@ -597,9 +596,10 @@ return (
             isEditable={this.isEditable('email')}
             {...editableFieldProps}
           />
-          {/* {this.renderSecondaryEmailField(editableFieldProps)}
-          // <ResetPassword email={this.props.formValues.email} />
+           {this.renderSecondaryEmailField(editableFieldProps)}
+          {/* <ResetPassword email={this.props.formValues.email} />
           */}
+          <hr />
           {(!getConfig().ENABLE_COPPA_COMPLIANCE)
             && (
             <EditableField
@@ -612,6 +612,7 @@ return (
               {...editableFieldProps}
             />
             )}
+          <hr />  
           <EditableField
             name="country"
             type="select"
@@ -704,6 +705,7 @@ return (
             // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.education.empty'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="gender"
             type="select"
@@ -713,6 +715,7 @@ return (
             // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.gender.empty'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="language_proficiencies"
             type="select"
@@ -760,6 +763,7 @@ return (
             // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.linkedin.empty'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="social_link_facebook"
             type="text"
@@ -768,6 +772,7 @@ return (
             // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.facebook.empty'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="social_link_twitter"
             type="text"
@@ -799,6 +804,7 @@ return (
             helpText={this.props.intl.formatMessage(messages['account.settings.field.site.language.help.text'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="time_zone"
             type="select"
@@ -879,7 +885,7 @@ return (
     } = this.props;
 
     return (
-      <div className="page__account-settings container-fluid py-5">
+      <div className="page__account-settings container-fluid">
         {this.renderDuplicateTpaProviderMessage()}
         <h1 className="title-account">
           {this.props.intl.formatMessage(messages['account.settings.page.heading'])}
