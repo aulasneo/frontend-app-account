@@ -15,12 +15,18 @@ const JumpNav = ({
   const stickToTop = useWindowSize().width > breakpoints.small.minWidth;
   
   const [expandAll, setExpandAll] = useState(false);
+  const [dropdownResponsiveTitle, setDropdownResponsiveTitle] = useState("")
   
+  const handleChange = (title) => {
+        setDropdownResponsiveTitle(title)
+        setExpandAll(!expandAll)
+  }
+
   return (
     <div className={classNames('jump-nav', { 'jump-nav-sm position-sticky pt-3': stickToTop })}>
-      <div className= "button-contened">
+      <div className="button-contened">
       <Scrollspy
-        items={[
+         items= {[
           'basic-information',
           'reset-password',
           'profile-information',
@@ -35,50 +41,70 @@ const JumpNav = ({
         style={{ height: expandAll ? 'auto' : '1.6rem', width: '100%' }}
       >
         <li>
-          <NavHashLink to="#basic-information" style={window.location.href.includes("#basic-information") ? {fontWeight:"700"} : {fontWeight:"300"}}>
+          <span style={{fontWeight: "700"}} >
+            {dropdownResponsiveTitle}
+          </span>
+        </li>
+        {!window.location.href.includes("#basic-information") && 
+        <li>
+          <NavHashLink to="#basic-information" style={window.location.href.includes("#basic-information") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.account.information']))}>
             {intl.formatMessage(messages['account.settings.section.account.information'])}
           </NavHashLink>
         </li>
+        }
+        {!window.location.href.includes("#reset-password") && 
         <li>
-          <NavHashLink to="#reset-password" style={window.location.href.includes("#reset-password") ? {fontWeight:"700"} : {fontWeight:"300"}}>
+          <NavHashLink to="#reset-password" style={window.location.href.includes("#reset-password") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.account.information.resetpassword']))}>
             {intl.formatMessage(messages['account.settings.section.account.information.resetpassword'])}
           </NavHashLink>
         </li>
+        }
+        {!window.location.href.includes("#profile-information") && 
         <li>
-          <NavHashLink to="#profile-information" style={window.location.href.includes("#profile-information") ? {fontWeight:"700"} : {fontWeight:"300"}}>
+          <NavHashLink to="#profile-information" style={window.location.href.includes("#profile-information") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.profile.information']))}>
             {intl.formatMessage(messages['account.settings.section.profile.information'])}
           </NavHashLink>
         </li>
+        }
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && displayDemographicsLink
           && (
+          !window.location.href.includes("#demographics-information") &&
           <li>
-            <NavHashLink to="#demographics-information" style={window.location.href.includes("#demographics-information") ? {fontWeight:"700"} : {fontWeight:"300"}}>
+            <NavHashLink to="#demographics-information" style={window.location.href.includes("#demographics-information") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.demographics.information']))}>
               {intl.formatMessage(messages['account.settings.section.demographics.information'])}
             </NavHashLink>
           </li>
           )}
+        {!window.location.href.includes("#social-media") && 
         <li>
-          <NavHashLink to="#social-media" style={window.location.href.includes("#social-media") ? {fontWeight:"700"} : {fontWeight:"300"}} >
+          <NavHashLink to="#social-media" style={window.location.href.includes("#social-media") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.social.media']))} >
             {intl.formatMessage(messages['account.settings.section.social.media'])}
           </NavHashLink>
         </li>
+        }
+        {!window.location.href.includes("#site-preferences") && 
         <li>
-          <NavHashLink to="#site-preferences" style={window.location.href.includes("#site-preferences") ? {fontWeight:"700"} : {fontWeight:"300"}} >
+          <NavHashLink to="#site-preferences" style={window.location.href.includes("#site-preferences") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.site.preferences']))} >
             {intl.formatMessage(messages['account.settings.section.site.preferences'])}
           </NavHashLink>
         </li>
+        }
+        {!window.location.href.includes("#linked-accounts") && 
         <li>
-          <NavHashLink to="#linked-accounts" style={window.location.href.includes("#linked-accounts") ? {fontWeight:"700"} : {fontWeight:"300"}} >
+          <NavHashLink to="#linked-accounts" style={window.location.href.includes("#linked-accounts") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.linked.accounts']))} >
             {intl.formatMessage(messages['account.settings.section.linked.accounts'])}
           </NavHashLink>
         </li>
+        }
+        {!window.location.href.includes("#delete-account") && 
         <li>
-          <NavHashLink to="#delete-account" style={window.location.href.includes("#delete-account") ? {fontWeight:"700"} : {fontWeight:"300"}} >
+          <NavHashLink to="#delete-account" style={window.location.href.includes("#delete-account") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.jump.nav.delete.account']))} >
             {intl.formatMessage(messages['account.settings.jump.nav.delete.account'])}
           </NavHashLink>
         </li>
+        }
       </Scrollspy>
-      <button className="button-expand" block onClick={() => { setExpandAll(!expandAll); }}>
+      <button className="button-expand" onClick={() => { setExpandAll(!expandAll) }}>
             {!expandAll
               ?
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +116,6 @@ const JumpNav = ({
               </svg>
             }
       </button>
-      
       </div>
     </div>
   );
