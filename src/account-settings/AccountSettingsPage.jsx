@@ -65,6 +65,7 @@ class AccountSettingsPage extends React.Component {
     };
 
     this.navLinkRefs = {
+      '': React.createRef(),
       '#basic-information': React.createRef(),
       '#reset-password': React.createRef(),
       '#profile-information': React.createRef(),
@@ -483,8 +484,8 @@ class AccountSettingsPage extends React.Component {
 {/*General Information*--------------------------------------------------------------------*/}      
 
 return (
-      <>
-      {(global.location.hash === '#basic-information') ? 
+    <>
+       {(global.location.hash === '#basic-information') || (global.location.hash === '') ? 
         <div className="account-section pt-3 mb-5" id="basic-information" ref={this.navLinkRefs['#basic-information']}>
           {
             this.props.mostRecentVerifiedName
@@ -644,15 +645,15 @@ return (
               {...editableFieldProps}
             />
             )}
+            
         </div>
         :
-        ""
-      }
-        
+         ""
+       }
 {/*--------------------------------------------------------------------------------------------*/}        
        
 {/*Password------------------------------------------------------------------------------------*/}  
-     {(global.location.hash === '#reset-password') ? 
+     {(global.location.hash === '#reset-password') && 
         <div className="account-section pt-3 mb-5" id="reset-password" ref={this.navLinkRefs['#reset-password']}>
           {
             this.props.mostRecentVerifiedName
@@ -680,13 +681,11 @@ return (
            {this.renderSecondaryEmailField(editableFieldProps)}
            <ResetPassword email={this.props.formValues.email} />
         </div>
-        :
-        ""
       } 
 {/*--------------------------------------------------------------------------------------------*/}
         
 {/*Profile Information ------------------------------------------------------------------------*/}
-      {(global.location.hash === '#profile-information') ? 
+      {(global.location.hash === '#profile-information') && 
         <>
         <div className="account-section pt-3 mb-5" id="profile-information" ref={this.navLinkRefs['#profile-information']}>
           
@@ -737,13 +736,11 @@ return (
         </div>
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && this.renderDemographicsSection()}
         </>
-        :
-        ""
       }
 {/*--------------------------------------------------------------------------------------------*/}      
       
 {/*Social Media -------------------------------------------------------------------------------*/}    
-      {(global.location.hash === '#social-media') ?
+      {(global.location.hash === '#social-media') &&
         <div className="account-section pt-3 mb-5" id="social-media">
           {/* <h2 className="section-heading h4 mb-3">
           //   {this.props.intl.formatMessage(messages['account.settings.section.social.media'])}
@@ -782,13 +779,11 @@ return (
             {...editableFieldProps}
           />
         </div>
-        :
-        ""
       }  
 {/*--------------------------------------------------------------------------------------------*/}
 
 {/*Site Preferences ---------------------------------------------------------------------------*/}
-      {(global.location.hash === '#site-preferences') ? 
+      {(global.location.hash === '#site-preferences') && 
         <div className="account-section pt-3 mb-5" id="site-preferences" ref={this.navLinkRefs['#site-preferences']}>
           {/* <h2 className="section-heading h4 mb-3">
           //   {this.props.intl.formatMessage(messages['account.settings.section.site.preferences'])}
@@ -820,14 +815,12 @@ return (
             }}
           />
         </div>
-        :
-        ""
       }
         
 {/*--------------------------------------------------------------------------------------------*/} 
 
 {/*Linked Accounts ----------------------------------------------------------------------------*/}
-      {(global.location.hash === '#linked-accounts') ?  
+      {(global.location.hash === '#linked-accounts') &&  
         <div className="account-section pt-3 mb-5" id="linked-accounts" ref={this.navLinkRefs['#linked-accounts']}>
           {/* <h2 className="section-heading h4 mb-3">{this.props.intl.formatMessage(messages['account.settings.section.linked.accounts'])}</h2> */}
           <p>
@@ -838,13 +831,11 @@ return (
           </p>
           <ThirdPartyAuth />
         </div>
-        :
-        ""
       }
 {/*--------------------------------------------------------------------------------------------*/} 
       
 {/*Delete Account------------------------------------------------------------------------------*/}
-      {(global.location.hash === '#delete-account') ? 
+      {(global.location.hash === '#delete-account') && 
         <>
         <div className="account-section pt-3 mb-5" id="delete-account" ref={this.navLinkRefs['#delete-account']}>
           <DeleteAccount
@@ -853,8 +844,6 @@ return (
           />
         </div>
         </>
-        :
-        ""
       }
 {/*--------------------------------------------------------------------------------------------*/} 
       </>
