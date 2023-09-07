@@ -1,6 +1,6 @@
 import { getConfig } from '@edx/frontend-platform';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
-import { breakpoints, useWindowSize, Button } from '@edx/paragon';
+import { breakpoints, useWindowSize } from '@edx/paragon';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -15,7 +15,7 @@ const JumpNav = ({
   const stickToTop = useWindowSize().width > breakpoints.small.minWidth;
   
   const [expandAll, setExpandAll] = useState(false);
-  const [dropdownResponsiveTitle, setDropdownResponsiveTitle] = useState("")
+  const [dropdownResponsiveTitle, setDropdownResponsiveTitle] = useState(intl.formatMessage(messages['account.settings.section.account.information']))
   
   const handleChange = (title) => {
         setDropdownResponsiveTitle(title)
@@ -36,7 +36,7 @@ const JumpNav = ({
           'linked-accounts',
           'delete-account',
         ]}
-        className="list-unstyled"
+        className="list-unstyled-account"
         currentClassName="font-weight-bold d-flex"
         style={{ height: expandAll ? 'auto' : '1.6rem', width: '100%' }}
       >
@@ -45,23 +45,23 @@ const JumpNav = ({
             {dropdownResponsiveTitle}
           </span>
         </li>
-        {!window.location.href.includes("#basic-information") && 
+        {!window.location.href.includes("#basic-information") && (dropdownResponsiveTitle != intl.formatMessage(messages['account.settings.section.account.information'])) &&
         <li>
-          <NavHashLink to="#basic-information" style={window.location.href.includes("#basic-information") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.account.information']))}>
-            {intl.formatMessage(messages['account.settings.section.account.information'])}
+          <NavHashLink to="#basic-information" onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.account.information']))}>
+           {intl.formatMessage(messages['account.settings.section.account.information'])}
           </NavHashLink>
         </li>
         }
         {!window.location.href.includes("#reset-password") && 
         <li>
-          <NavHashLink to="#reset-password" style={window.location.href.includes("#reset-password") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.account.information.resetpassword']))}>
+          <NavHashLink to="#reset-password" onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.account.information.resetpassword']))}>
             {intl.formatMessage(messages['account.settings.section.account.information.resetpassword'])}
           </NavHashLink>
         </li>
         }
         {!window.location.href.includes("#profile-information") && 
         <li>
-          <NavHashLink to="#profile-information" style={window.location.href.includes("#profile-information") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.profile.information']))}>
+          <NavHashLink to="#profile-information" onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.profile.information']))}>
             {intl.formatMessage(messages['account.settings.section.profile.information'])}
           </NavHashLink>
         </li>
@@ -70,41 +70,42 @@ const JumpNav = ({
           && (
           !window.location.href.includes("#demographics-information") &&
           <li>
-            <NavHashLink to="#demographics-information" style={window.location.href.includes("#demographics-information") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.demographics.information']))}>
+            <NavHashLink to="#demographics-information" onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.demographics.information']))}>
               {intl.formatMessage(messages['account.settings.section.demographics.information'])}
             </NavHashLink>
           </li>
           )}
         {!window.location.href.includes("#social-media") && 
         <li>
-          <NavHashLink to="#social-media" style={window.location.href.includes("#social-media") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.social.media']))} >
+          <NavHashLink to="#social-media" onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.social.media']))} >
             {intl.formatMessage(messages['account.settings.section.social.media'])}
           </NavHashLink>
         </li>
         }
         {!window.location.href.includes("#site-preferences") && 
         <li>
-          <NavHashLink to="#site-preferences" style={window.location.href.includes("#site-preferences") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.site.preferences']))} >
+          <NavHashLink to="#site-preferences" onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.site.preferences']))} >
             {intl.formatMessage(messages['account.settings.section.site.preferences'])}
           </NavHashLink>
         </li>
         }
         {!window.location.href.includes("#linked-accounts") && 
         <li>
-          <NavHashLink to="#linked-accounts" style={window.location.href.includes("#linked-accounts") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.linked.accounts']))} >
+          <NavHashLink to="#linked-accounts" onClick={() => handleChange(intl.formatMessage(messages['account.settings.section.linked.accounts']))} >
             {intl.formatMessage(messages['account.settings.section.linked.accounts'])}
           </NavHashLink>
         </li>
         }
         {!window.location.href.includes("#delete-account") && 
         <li>
-          <NavHashLink to="#delete-account" style={window.location.href.includes("#delete-account") ? {fontWeight:"700"} : {fontWeight:"300"}} onClick={() => handleChange(intl.formatMessage(messages['account.settings.jump.nav.delete.account']))} >
+          <NavHashLink to="#delete-account" onClick={() => handleChange(intl.formatMessage(messages['account.settings.jump.nav.delete.account']))} >
             {intl.formatMessage(messages['account.settings.jump.nav.delete.account'])}
           </NavHashLink>
         </li>
         }
-      </Scrollspy>
-      <button className="button-expand" onClick={() => { setExpandAll(!expandAll) }}>
+       </Scrollspy>
+       
+       <button className="button-expand" onClick={() => { setExpandAll(!expandAll) }}>
             {!expandAll
               ?
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +116,7 @@ const JumpNav = ({
                 <path d="M13.3833 10.5553L8.9391 6.00023L4.38398 10.4444" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             }
-      </button>
+        </button>
       </div>
     </div>
   );
