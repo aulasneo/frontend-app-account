@@ -111,30 +111,19 @@ function EditableField(props) {
       cases={{
         editing: (
           <>
-            <form onSubmit={handleSubmit}>
+            <form className="form-account" onSubmit={handleSubmit}>
               <ValidationFormGroup
                 for={id}
                 invalid={error != null}
                 invalidMessage={error}
                 helpText={helpText}
               >
-                <label className="h6 d-block" htmlFor={id}>{label}</label>
-                <Input
-                  data-hj-suppress
-                  name={name}
-                  id={id}
-                  type={type}
-                  value={value}
-                  onChange={handleChange}
-                  options={inputOptions}
-                  {...others}
-                />
-                <>{others.children}</>
-              </ValidationFormGroup>
-              <p>
-                <StatefulButton
+              <div className="buttons">
+                <label className="label-account" htmlFor={id}>{label}</label>
+                <div className="button-cont">
+                <Button
+                  className="buttonSave"
                   type="submit"
-                  className="mr-2"
                   state={saveState}
                   labels={{
                     default: intl.formatMessage(messages['account.settings.editable.field.action.save']),
@@ -150,32 +139,95 @@ function EditableField(props) {
                     if (saveState === 'pending') { e.preventDefault(); }
                   }}
                   disabledStates={[]}
-                />
+                >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 9.5L5.5 14L15 1.5" stroke="#2CBB7F" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+               </Button>
                 <Button
+                  className="button-cancel-account"
                   variant="outline-primary"
                   onClick={handleCancel}
                 >
-                  {intl.formatMessage(messages['account.settings.editable.field.action.cancel'])}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.5 2.5L2.5 13.5" stroke="#B00020" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2.5 2.5L13.5 13.5" stroke="#B00020" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
                 </Button>
-              </p>
+               </div>
+              </div>
+                <Input
+                  data-hj-suppress
+                  name={name}
+                  id={id}
+                  type={type}
+                  value={value}
+                  onChange={handleChange}
+                  options={inputOptions}
+                  {...others}
+                />
+                <>{others.children}</>
+              </ValidationFormGroup>
             </form>
             {['name', 'verified_name'].includes(name) && <CertificatePreference fieldName={name} />}
           </>
         ),
         default: (
-          <div className="form-group">
-            <div className="d-flex align-items-start">
-              <h6 aria-level="3">{label}</h6>
-              {isEditable ? (
-                <Button variant="link" onClick={handleEdit} className="ml-3">
-                  <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />{intl.formatMessage(messages['account.settings.editable.field.action.edit'])}
+          <>
+            <form className="form-account" onSubmit={handleSubmit}>
+              <ValidationFormGroup
+                for={id}
+                invalid={error != null}
+                invalidMessage={error}
+                helpText={helpText}
+              >
+              <div className="button-cont">
+                <label className="label-account" htmlFor={id}>{label}</label>
+                <div className="buttons">
+                
+                <Button
+                  className="buttonSave"
+                  onClick={handleEdit}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 0.5L13.5 3.5L5 12L1 13L2 9L10.5 0.5Z" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.5 2.5L11.5 5.5" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </Button>
-              ) : null}
-            </div>
-            <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{renderValue(value)}</p>
-            <p className="small text-muted mt-n2">{renderConfirmationMessage() || helpText}</p>
-          </div>
+               </div> 
+              </div>
+                
+                <Input
+                  data-hj-suppress
+                  name={name}
+                  id={id}
+                  type={type}
+                  value={value}
+                  onChange={handleChange}
+                  options={inputOptions}
+                  disabled
+                  {...others}
+                />
+                <>{others.children}</>
+              </ValidationFormGroup>
+            </form>
+            {['name', 'verified_name'].includes(name) && <CertificatePreference fieldName={name} />}
+          </>
         ),
+        
+        //   <div className="form-group">
+        //     <div className="label-title">
+        //       <h6 aria-level="3">{label}</h6>
+        //       {isEditable ? (
+        //         <Button variant="link" onClick={handleEdit} className="ml-3">
+        //           <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
+        //         </Button>
+        //       ) : null}
+        //     </div>
+        //     <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{renderValue(value)}</p>
+        //     <p className="small text-muted mt-n2">{renderConfirmationMessage() || helpText}</p>
+        //   </div>
+        // ),
       }}
     />
   );

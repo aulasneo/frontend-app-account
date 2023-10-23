@@ -67,7 +67,9 @@ class AccountSettingsPage extends React.Component {
     };
 
     this.navLinkRefs = {
+      '': React.createRef(),
       '#basic-information': React.createRef(),
+      '#reset-password': React.createRef(),
       '#profile-information': React.createRef(),
       '#demographics-information': React.createRef(),
       '#social-media': React.createRef(),
@@ -100,7 +102,6 @@ class AccountSettingsPage extends React.Component {
       }
     }
   }
-
   // NOTE: We need 'locale' for the memoization in getLocalizedTimeZoneOptions.  Don't remove it!
   // eslint-disable-next-line no-unused-vars
   getLocalizedTimeZoneOptions = memoize((timeZoneOptions, countryTimeZoneOptions, locale) => {
@@ -497,6 +498,10 @@ class AccountSettingsPage extends React.Component {
             {...editableFieldProps}
           />
           )}
+
+{/*General Information*--------------------------------------------------------------------*/}
+
+       {(global.location.hash === '#basic-information') || (global.location.hash === '') ?
         <div className="account-section pt-3 mb-5" id="basic-information" ref={this.navLinkRefs['#basic-information']}>
           {
             this.props.mostRecentVerifiedName
@@ -512,27 +517,40 @@ class AccountSettingsPage extends React.Component {
               body=""
             />
             )}
-
-          <h2 className="section-heading h4 mb-3">
+         {/* <h2 className="section-heading h4 mb-3">
             {this.props.intl.formatMessage(messages['account.settings.section.account.information'])}
           </h2>
-          <p>{this.props.intl.formatMessage(messages['account.settings.section.account.information.description'])}</p>
+          <p>{this.props.intl.formatMessage(messages['account.settings.section.account.information.description'])}</p>*/}
           {this.renderManagedProfileMessage()}
 
           {this.renderNameChangeModal()}
 
-          <EditableField
-            name="username"
-            type="text"
-            value={this.props.formValues.username}
-            label={this.props.intl.formatMessage(messages['account.settings.field.username'])}
-            helpText={this.props.intl.formatMessage(
-              messages['account.settings.field.username.help.text'],
-              { siteName: getConfig().SITE_NAME },
-            )}
-            isEditable={false}
-            {...editableFieldProps}
-          />
+          <div className="form-group-uneditable">
+          <label className="label-account-uneditable">Username</label>
+            <div className="label-title">
+              <h6 className="label-title-uneditable" aria-level="3">{this.props.formValues.username}</h6>
+            </div>
+          {/*   <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{this.props.formValues.username}</p>*/}
+            <p className="small text-muted">
+               {this.props.intl.formatMessage(messages['account.settings.field.username.help.text'],
+               { siteName: getConfig().SITE_NAME },)}
+            </p>
+          </div>
+
+          <hr />
+          {/* <EditableField
+          //   name="username"
+          //   type="text"
+          //   value={this.props.formValues.username}
+          //   label={this.props.intl.formatMessage(messages['account.settings.field.username'])}
+          //   helpText={this.props.intl.formatMessage(
+          //     messages['account.settings.field.username.help.text'],
+          //     { siteName: getConfig().SITE_NAME },
+          //   )}
+          //   isEditable={false}
+          //   {...editableFieldProps}
+          // />*/}
+
           <EditableField
             name="name"
             type="text"
@@ -587,7 +605,7 @@ class AccountSettingsPage extends React.Component {
               onSubmit={this.handleSubmitVerifiedName}
             />
             )}
-
+          <hr />
           <EmailField
             name="email"
             label={this.props.intl.formatMessage(messages['account.settings.field.email'])}
@@ -605,8 +623,10 @@ class AccountSettingsPage extends React.Component {
             isEditable={this.isEditable('email')}
             {...editableFieldProps}
           />
-          {this.renderSecondaryEmailField(editableFieldProps)}
-          <ResetPassword email={this.props.formValues.email} />
+           {this.renderSecondaryEmailField(editableFieldProps)}
+          {/* <ResetPassword email={this.props.formValues.email} />
+          */}
+          <hr />
           {(!getConfig().ENABLE_COPPA_COMPLIANCE)
             && (
             <EditableField
@@ -619,6 +639,7 @@ class AccountSettingsPage extends React.Component {
               {...editableFieldProps}
             />
             )}
+          <hr />
           <EditableField
             name="country"
             type="select"
@@ -651,11 +672,51 @@ class AccountSettingsPage extends React.Component {
             />
             )}
         </div>
+        :
+         ""
+       }
+{/*--------------------------------------------------------------------------------------------*/}
 
+{/*Password------------------------------------------------------------------------------------*/}
+     {(global.location.hash === '#reset-password') &&
+        <div className="account-section pt-3 mb-5" id="reset-password" ref={this.navLinkRefs['#reset-password']}>
+          {
+            this.props.mostRecentVerifiedName
+            && this.renderVerifiedNameMessage(this.props.mostRecentVerifiedName)
+          }
+          {localStorage.getItem('submittedDOB')
+            && (
+            <OneTimeDismissibleAlert
+              id="updated-dob"
+              variant="success"
+              icon={CheckCircle}
+              header={this.props.intl.formatMessage(messages['account.settings.field.dob.form.success'])}
+              body=""
+            />
+            )}
+
+          {/* <h2 className="section-heading h4 mb-3">
+          //   {this.props.intl.formatMessage(messages['account.settings.section.account.information.resetpassword'])}
+          // </h2>*/}
+          <p className="description-account-setings">{this.props.intl.formatMessage(messages['account.settings.section.account.information.resetpassword.description'])}</p>
+          {this.renderManagedProfileMessage()}
+
+          {this.renderNameChangeModal()}
+
+           {this.renderSecondaryEmailField(editableFieldProps)}
+           <ResetPassword email={this.props.formValues.email} />
+        </div>
+      }
+{/*--------------------------------------------------------------------------------------------*/}
+
+{/*Profile Information ------------------------------------------------------------------------*/}
+      {(global.location.hash === '#profile-information') &&
+        <>
         <div className="account-section pt-3 mb-5" id="profile-information" ref={this.navLinkRefs['#profile-information']}>
-          <h2 className="section-heading h4 mb-3">
-            {this.props.intl.formatMessage(messages['account.settings.section.profile.information'])}
-          </h2>
+
+          {/* <h2 className="section-heading h4 mb-3">
+          //   {this.props.intl.formatMessage(messages['account.settings.section.profile.information'])}
+          // </h2>*/}
 
           <EditableField
             name="level_of_education"
@@ -663,25 +724,27 @@ class AccountSettingsPage extends React.Component {
             value={this.props.formValues.level_of_education}
             options={educationLevelOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.education'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.education.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.education.empty'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="gender"
             type="select"
             value={this.props.formValues.gender}
             options={genderOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.gender'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.gender.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.gender.empty'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="language_proficiencies"
             type="select"
             value={this.props.formValues.language_proficiencies}
             options={languageProficiencyOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies.empty'])}
             {...editableFieldProps}
           />
           {getConfig().COACHING_ENABLED
@@ -695,10 +758,16 @@ class AccountSettingsPage extends React.Component {
             )}
         </div>
         {getConfig().ENABLE_DEMOGRAPHICS_COLLECTION && this.renderDemographicsSection()}
+        </>
+      }
+{/*--------------------------------------------------------------------------------------------*/}
+
+{/*Social Media -------------------------------------------------------------------------------*/}
+      {(global.location.hash === '#social-media') &&
         <div className="account-section pt-3 mb-5" id="social-media">
-          <h2 className="section-heading h4 mb-3">
-            {this.props.intl.formatMessage(messages['account.settings.section.social.media'])}
-          </h2>
+          {/* <h2 className="section-heading h4 mb-3">
+          //   {this.props.intl.formatMessage(messages['account.settings.section.social.media'])}
+          // </h2>*/}
           <p>
             {this.props.intl.formatMessage(
               messages['account.settings.section.social.media.description'],
@@ -711,49 +780,56 @@ class AccountSettingsPage extends React.Component {
             type="text"
             value={this.props.formValues.social_link_linkedin}
             label={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.linkedin'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.linkedin.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.linkedin.empty'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="social_link_facebook"
             type="text"
             value={this.props.formValues.social_link_facebook}
             label={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.facebook'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.facebook.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.facebook.empty'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="social_link_twitter"
             type="text"
             value={this.props.formValues.social_link_twitter}
             label={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.twitter'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.twitter.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.social.platform.name.twitter.empty'])}
             {...editableFieldProps}
           />
         </div>
+      }
+{/*--------------------------------------------------------------------------------------------*/}
 
+{/*Site Preferences ---------------------------------------------------------------------------*/}
+      {(global.location.hash === '#site-preferences') &&
         <div className="account-section pt-3 mb-5" id="site-preferences" ref={this.navLinkRefs['#site-preferences']}>
-          <h2 className="section-heading h4 mb-3">
-            {this.props.intl.formatMessage(messages['account.settings.section.site.preferences'])}
-          </h2>
+          {/* <h2 className="section-heading h4 mb-3">
+          //   {this.props.intl.formatMessage(messages['account.settings.section.site.preferences'])}
+          // </h2> */}
 
           <BetaLanguageBanner />
           <EditableField
             name="siteLanguage"
             type="select"
             options={this.props.siteLanguageOptions}
-            value={this.props.siteLanguage.draft !== undefined ? this.props.siteLanguage.draft : this.context.locale}
+            // value={this.props.siteLanguage.draft !== undefined ? this.props.siteLanguage.draft : this.context.locale}
             label={this.props.intl.formatMessage(messages['account.settings.field.site.language'])}
             helpText={this.props.intl.formatMessage(messages['account.settings.field.site.language.help.text'])}
             {...editableFieldProps}
           />
+          <hr />
           <EditableField
             name="time_zone"
             type="select"
             value={this.props.formValues.time_zone}
             options={timeZoneOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.time.zone'])}
-            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.time.zone.empty'])}
+            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.time.zone.empty'])}
             helpText={this.props.intl.formatMessage(messages['account.settings.field.time.zone.description'])}
             {...editableFieldProps}
             onSubmit={(formId, value) => {
@@ -762,9 +838,14 @@ class AccountSettingsPage extends React.Component {
             }}
           />
         </div>
+      }
 
+{/*--------------------------------------------------------------------------------------------*/}
+
+{/*Linked Accounts ----------------------------------------------------------------------------*/}
+      {(global.location.hash === '#linked-accounts') &&
         <div className="account-section pt-3 mb-5" id="linked-accounts" ref={this.navLinkRefs['#linked-accounts']}>
-          <h2 className="section-heading h4 mb-3">{this.props.intl.formatMessage(messages['account.settings.section.linked.accounts'])}</h2>
+          {/* <h2 className="section-heading h4 mb-3">{this.props.intl.formatMessage(messages['account.settings.section.linked.accounts'])}</h2> */}
           <p>
             {this.props.intl.formatMessage(
               messages['account.settings.section.linked.accounts.description'],
@@ -773,14 +854,21 @@ class AccountSettingsPage extends React.Component {
           </p>
           <ThirdPartyAuth />
         </div>
+      }
+{/*--------------------------------------------------------------------------------------------*/}
 
+{/*Delete Account------------------------------------------------------------------------------*/}
+      {(global.location.hash === '#delete-account') &&
+        <>
         <div className="account-section pt-3 mb-5" id="delete-account" ref={this.navLinkRefs['#delete-account']}>
           <DeleteAccount
             isVerifiedAccount={this.props.isActive}
             hasLinkedTPA={hasLinkedTPA}
           />
         </div>
-
+        </>
+      }
+{/*--------------------------------------------------------------------------------------------*/}
       </>
     );
   }
@@ -809,19 +897,19 @@ class AccountSettingsPage extends React.Component {
     } = this.props;
 
     return (
-      <div className="page__account-settings container-fluid py-5">
+      <div className="page__account-settings container-fluid">
         {this.renderDuplicateTpaProviderMessage()}
-        <h1 className="mb-4">
+        <h1 className="title-account">
           {this.props.intl.formatMessage(messages['account.settings.page.heading'])}
         </h1>
         <div>
-          <div className="row">
-            <div className="col-md-3">
+          <div className="page-account">
+            <div className="col-md-4">
               <JumpNav
                 displayDemographicsLink={this.props.formValues.shouldDisplayDemographicsSection}
               />
             </div>
-            <div className="col-md-9">
+            <div className="col-md-6 w-100">
               {loading ? this.renderLoading() : null}
               {loaded ? this.renderContent() : null}
               {loadingError ? this.renderError() : null}

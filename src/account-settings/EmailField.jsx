@@ -68,7 +68,7 @@ function EmailField(props) {
         <h6 aria-level="3">
           {intl.formatMessage(messages['account.settings.email.field.confirmation.header'])}
         </h6>
-        {intl.formatMessage(confirmationMessageDefinition, { value: confirmationValue })}
+          {intl.formatMessage(confirmationMessageDefinition, { value: confirmationValue })}
       </Alert>
     );
   };
@@ -105,27 +105,20 @@ function EmailField(props) {
       expression={isEditing ? 'editing' : 'default'}
       cases={{
         editing: (
-          <form onSubmit={handleSubmit}>
+        <>
+          <form className="form-account" onSubmit={handleSubmit}>
             <ValidationFormGroup
               for={id}
               invalid={error != null}
               invalidMessage={error}
               helpText={helpText}
             >
-              <label className="h6 d-block" htmlFor={id}>{label}</label>
-              <Input
-                data-hj-suppress
-                name={name}
-                id={id}
-                type="email"
-                value={value}
-                onChange={handleChange}
-              />
-            </ValidationFormGroup>
-            <p>
-              <StatefulButton
+            <div className="buttons">
+              <label className="label-account" htmlFor={id}>{label}</label>
+              <div className="button-cont">
+              <Button
                 type="submit"
-                className="mr-2"
+                className="buttonSave"
                 state={saveState}
                 labels={{
                   default: intl.formatMessage(messages['account.settings.editable.field.action.save']),
@@ -141,30 +134,71 @@ function EmailField(props) {
                   if (saveState === 'pending') { e.preventDefault(); }
                 }}
                 disabledStates={[]}
-              />
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 9.5L5.5 14L15 1.5" stroke="#2CBB7F" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </Button>
               <Button
+                className="button-cancel"
                 variant="outline-primary"
                 onClick={handleCancel}
               >
-                {intl.formatMessage(messages['account.settings.editable.field.action.cancel'])}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.5 2.5L2.5 13.5" stroke="#B00020" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2.5 2.5L13.5 13.5" stroke="#B00020" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               </Button>
-            </p>
+             </div>
+            </div>
+            <Input
+                data-hj-suppress
+                name={name}
+                id={id}
+                type="email"
+                value={value}
+                onChange={handleChange}
+              />
+            </ValidationFormGroup>
           </form>
+      </>    
         ),
         default: (
-          <div className="form-group">
-            <div className="d-flex align-items-start">
-              <h6 aria-level="3">{label}</h6>
-              {isEditable ? (
-                <Button variant="link" onClick={handleEdit} className="ml-3">
-                  <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
-                  {intl.formatMessage(messages['account.settings.editable.field.action.edit'])}
+        <>
+          <form onSubmit={handleSubmit}>
+            <ValidationFormGroup
+              for={id}
+              invalid={error != null}
+              invalidMessage={error}
+              helpText={helpText}
+            >
+            <div className="buttons">
+              <label className="label-account" htmlFor={id}>{label}</label>
+              <div className="button-cont">
+              <Button
+                  className="buttonSave"
+                  onClick={handleEdit}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 0.5L13.5 3.5L5 12L1 13L2 9L10.5 0.5Z" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8.5 2.5L11.5 5.5" stroke="#666666" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
                 </Button>
-              ) : null}
-            </div>
-            <p data-hj-suppress>{renderValue()}</p>
-            {renderConfirmationMessage() || <p className="small text-muted mt-n2">{helpText}</p>}
-          </div>
+                </div>
+              </div>
+              <Input
+                data-hj-suppress
+                name={name}
+                id={id}
+                type="email"
+                value={value}
+                onChange={handleChange}
+                disabled
+              />
+            </ValidationFormGroup>
+          </form> 
+        </>
+          
         ),
       }}
     />
@@ -211,3 +245,18 @@ export default connect(editableFieldSelector, {
   onEdit: openForm,
   onCancel: closeForm,
 })(injectIntl(EmailField));
+
+
+{/* <div className="form-group">
+          //   <div className="d-flex align-items-start">
+          //     <h6 aria-level="3">{label}</h6>
+          //     {isEditable ? (
+          //       <Button variant="link" onClick={handleEdit} className="ml-3">
+          //         <FontAwesomeIcon className="mr-1" icon={faPencilAlt} />
+          //         {/*{intl.formatMessage(messages['account.settings.editable.field.action.edit'])}
+          //       </Button>
+          //     ) : null}
+          //   </div>
+          //   <p data-hj-suppress>{renderValue()}</p>
+          //   {renderConfirmationMessage() || <p className="small text-muted mt-n2">{helpText}</p>}
+          // </div>*/}

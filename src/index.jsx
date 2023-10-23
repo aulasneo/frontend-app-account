@@ -10,7 +10,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
 
-import Header, { messages as headerMessages } from '@edx/frontend-component-header';
+import { LearningHeader as Header } from '@edx/frontend-component-header';
+//import Header, { messages as headerMessages } from '@edx/frontend-component-header';
 import Footer, { messages as footerMessages } from '@edx/frontend-component-footer';
 
 import configureStore from './data/configureStore';
@@ -30,7 +31,7 @@ subscribe(APP_READY, () => {
         <Route path="/coaching_consent" component={CoachingConsent} />
         <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
           <Header />
-          <main className="flex-grow-1">
+          <main className="flex-grow-1 page-account">
             <Switch>
               <Route path="/id-verification" component={IdVerificationPage} />
               <Route exact path="/" component={AccountSettingsPage} />
@@ -53,7 +54,7 @@ subscribe(APP_INIT_ERROR, (error) => {
 initialize({
   messages: [
     appMessages,
-    headerMessages,
+  //  headerMessages,
     footerMessages,
   ],
   requireAuthenticatedUser: true,

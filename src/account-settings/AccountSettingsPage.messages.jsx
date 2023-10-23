@@ -33,8 +33,18 @@ const messages = defineMessages({
   },
   'account.settings.section.account.information': {
     id: 'account.settings.section.account.information',
-    defaultMessage: 'Account Information',
+    defaultMessage: 'General Information',
     description: 'The basic account information section heading.',
+  },
+  'account.settings.section.account.information.resetpassword': {
+    id: 'account.settings.section.account.information.resetpassword',
+    defaultMessage: 'Password',
+    description: 'In this section you can reset your password.',
+  },
+  'account.settings.section.account.information.resetpassword.description': {
+    id: 'account.settings.section.account.information.resetpassword',
+    defaultMessage: 'If you would like to reset your password, click on the button below..',
+    description: 'In this section you can reset your password.',
   },
   'account.settings.section.account.information.description': {
     id: 'account.settings.section.account.information.description',
@@ -78,12 +88,12 @@ const messages = defineMessages({
   },
   'account.settings.field.full.name': {
     id: 'account.settings.field.full.name',
-    defaultMessage: 'Full name',
+    defaultMessage: 'Full Name',
     description: 'Label for account settings name field.',
   },
   'account.settings.field.full.name.empty': {
     id: 'account.settings.field.full.name.empty',
-    defaultMessage: 'Add name',
+    defaultMessage: 'Add Name',
     description: 'Placeholder for empty account settings name field.',
   },
   'account.settings.field.full.name.help.text': {
@@ -213,7 +223,7 @@ const messages = defineMessages({
   },
   'account.settings.field.email': {
     id: 'account.settings.field.email',
-    defaultMessage: 'Email address (Sign in)',
+    defaultMessage: 'Sign in Email',
     description: 'Label for account settings email field.',
   },
   'account.settings.field.email.empty': {
@@ -253,17 +263,17 @@ const messages = defineMessages({
   },
   'account.settings.field.dob': {
     id: 'account.settings.field.dob',
-    defaultMessage: 'Year of birth',
+    defaultMessage: 'Year of Birth',
     description: 'Label for account settings year of birth field.',
   },
   'account.settings.field.dob.empty': {
     id: 'account.settings.field.dob.empty',
-    defaultMessage: 'Add year of birth',
+    defaultMessage: 'Add Year of Birth',
     description: 'Placeholder for empty account settings year of birth field.',
   },
   'account.settings.field.year_of_birth.options.empty': {
     id: 'account.settings.field.year_of_birth.options.empty',
-    defaultMessage: 'Select a year of birth',
+    defaultMessage: 'Select a Year of Birth',
     description: 'Option for empty value on account settings year of birth field.',
   },
   'account.settings.field.dob.month': {
@@ -276,6 +286,16 @@ const messages = defineMessages({
     defaultMessage: 'Year',
     description: 'Label for account settings year of birth field.',
   },
+  'account.settings.field.dob.month.default': {
+    id: 'account.settings.field.month.year.default',
+    defaultMessage: 'Select Month',
+    description: 'Default label for account settings month of birth field.',
+  },
+  'account.settings.field.dob.year.default': {
+    id: 'account.settings.field.dob.year.default',
+    defaultMessage: 'Select Year',
+    description: 'Default label for account settings year of birth field.',
+  },
   'account.settings.field.dob.form.button': {
     id: 'account.settings.field.dob.form.button',
     defaultMessage: 'Please confirm your date of birth',
@@ -283,17 +303,17 @@ const messages = defineMessages({
   },
   'account.settings.field.dob.form.title': {
     id: 'account.settings.field.dob.form.title',
-    defaultMessage: 'Confirm your date of birth',
+    defaultMessage: 'Enter your birth month and year',
     description: 'Title of DOB form',
   },
   'account.settings.field.dob.form.help.text': {
     id: 'account.settings.field.dob.form.help.text',
-    defaultMessage: 'We ask for birth date information to help us comply with our legal obligations.',
+    defaultMessage: 'We ask for birth month and year information to help us comply with our legal obligations.',
     description: 'Help text for DOB form',
   },
   'account.settings.field.dob.form.success': {
     id: 'account.settings.field.dob.form.success',
-    defaultMessage: 'Thank you for entering your birth date information.',
+    defaultMessage: 'Thank you for entering your information.',
     description: 'Title of banner when date of birth is successfully entered',
   },
   'account.settings.field.month_of_birth.options.empty': {
@@ -532,7 +552,7 @@ const messages = defineMessages({
   },
   'account.settings.editable.field.action.save': {
     id: 'account.settings.editable.field.action.save',
-    defaultMessage: 'Save',
+    defaultMessage: 'Save changes',
     description: 'The save button on an editable field',
   },
   'account.settings.editable.field.action.cancel': {

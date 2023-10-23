@@ -25,7 +25,7 @@ function ConfirmationAlert(props) {
 
   return (
     <Alert
-      className="alert-warning mt-n2"
+      className="alert-warning-passw mt-n2"
       icon={<FontAwesomeIcon className="mr-2" icon={faExclamationTriangle} />}
     >
       <FormattedMessage

@@ -13,15 +13,16 @@ function ResetPassword(props) {
   const { email, intl, status } = props;
   return (
     <div className="form-group">
-      <h6 aria-level="3">
-        <FormattedMessage
-          id="account.settings.editable.field.password.reset.label"
-          defaultMessage="Password"
-          description="The password label in account settings"
-        />
-      </h6>
-      <p>
+      {/* <h6 aria-level="3">
+      //   <FormattedMessage
+      //     id="account.settings.editable.field.password.reset.label"
+      //     defaultMessage="Password"
+      //     description="The password label in account settings"
+      //   />
+      // </h6>*/}
+      <p className="button-stateful-cont">
         <StatefulButton
+          className="buttonStateful"
           variant="link"
           state={status}
           onClick={(e) => {
@@ -42,6 +43,10 @@ function ResetPassword(props) {
             default: intl.formatMessage(messages['account.settings.editable.field.password.reset.button']),
           }}
         />
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="12" fill="white"/>
+          <path d="M10.5 7.5L15 12L10.5 16.5" stroke="#3F64E7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </p>
       {status === 'complete' ? <ConfirmationAlert email={email} /> : null}
       {status === 'forbidden' ? <RequestInProgressAlert /> : null}
