@@ -23,6 +23,11 @@ import CertificatePreference from './certificate-preference/CertificatePreferenc
 function EditableField(props) {
   const {
     name,
+    job_title,
+    city,
+    phone_number,
+    last_name,
+    language,
     label,
     emptyLabel,
     type,

@@ -127,6 +127,9 @@ class AccountSettingsPage extends React.Component {
       value: '',
       label: this.props.intl.formatMessage(messages['account.settings.field.country.options.empty']),
     }].concat(getCountryList(locale).map(({ code, name }) => ({ value: code, label: name }))),
+    languageOptions: [{
+      value: []
+    }],
     stateOptions: [{
       value: '',
       label: this.props.intl.formatMessage(messages['account.settings.field.state.options.empty']),
@@ -180,6 +183,91 @@ class AccountSettingsPage extends React.Component {
     }
     if (values !== this.props.committedValues?.verified_name) {
       this.props.beginNameChange(formId);
+    } else {
+      this.props.saveSettings(formId, values);
+    }
+  };
+
+  handleSubmitProfileCity = (formId, values) => {
+    if (Object.keys(this.props.drafts).includes('someRelatedFieldToCity')) {
+      this.props.saveMultipleSettings([
+        {
+          formId,
+          commitValues: values,
+        },
+        {
+          formId: 'someRelatedFieldToCity',
+          commitValues: this.props.formValues.someRelatedFieldToCity,
+        },
+      ], formId);
+    } else {
+      this.props.saveSettings(formId, values);
+    }
+  };
+
+  handleSubmitProfilePhoneNumber = (formId, values) => {
+    if (Object.keys(this.props.drafts).includes('someRelatedFieldToPhoneNumber')) {
+      this.props.saveMultipleSettings([
+        {
+          formId,
+          commitValues: values,
+        },
+        {
+          formId: 'someRelatedFieldToPhoneNumber',
+          commitValues: this.props.formValues.someRelatedFieldToPhoneNumber,
+        },
+      ], formId);
+    } else {
+      this.props.saveSettings(formId, values);
+    }
+  };
+
+  handleSubmitProfileJobTitle = (formId, values) => {
+    if (Object.keys(this.props.drafts).includes('someRelatedFieldToJobTitle')) {
+      this.props.saveMultipleSettings([
+        {
+          formId,
+          commitValues: values,
+        },
+        {
+          formId: 'someRelatedFieldToJobTitle',
+          commitValues: this.props.formValues.someRelatedFieldToJobTitle,
+        },
+      ], formId);
+    } else {
+      this.props.saveSettings(formId, values);
+    }
+  };
+
+  handleSubmitProfileLastName = (formId, values) => {
+    if (Object.keys(this.props.drafts).includes('someRelatedFieldToLastName')) {
+      this.props.saveMultipleSettings([
+        {
+          formId,
+          commitValues: values,
+        },
+        {
+          formId: 'someRelatedFieldToLastName',
+          commitValues: this.props.formValues.someRelatedFieldToLastName,
+        },
+      ], formId);
+    } else {
+      this.props.saveSettings(formId, values);
+    }
+  };
+
+  handleSubmitProfileLanguage = (formId, values) => {
+    if (Object.keys(this.props.drafts).includes('someRelatedFieldToLanguage')) {
+      this.props.saveMultipleSettings([
+        {
+          formId,
+          commitValues: values,
+        },
+        {
+          formId: 'someRelatedFieldToLanguage',
+          commitValues: this.props.formValues.someRelatedFieldToLanguage,
+        },
+      ], formId);
     } else {
       this.props.saveSettings(formId, values);
     }
@@ -582,6 +670,20 @@ class AccountSettingsPage extends React.Component {
             onChange={this.handleEditableFieldChange}
             onSubmit={this.handleSubmitProfileName}
           />
+          <EditableField
+            name="last_name"
+            type="text"
+            value={this.props.formValues.last_name}
+            label={this.props.intl.formatMessage(messages['account.settings.field.last_name'])}
+            helpText={this.props.intl.formatMessage(
+              messages['account.settings.field.last_name.help.text'],
+              { siteName: getConfig().SITE_NAME },
+            )}
+            isEditable={this.isEditable('last_name')}
+            onChange={this.handleEditableFieldChange}
+            onSubmit={this.handleSubmitProfileLastName}
+            {...editableFieldProps}
+          />
           {verifiedName
             && (
             <EditableField
@@ -652,6 +754,65 @@ class AccountSettingsPage extends React.Component {
                 : this.renderEmptyStaticFieldMessage()
             }
             isEditable={this.isEditable('country')}
+            {...editableFieldProps}
+          />
+          <EditableField
+            name="job_title"
+            type="text"
+            value={this.props.formValues.job_title}
+            label={this.props.intl.formatMessage(messages['account.settings.field.job_title'])}
+            helpText={this.props.intl.formatMessage(
+              messages['account.settings.field.job_title.help.text'],
+              { siteName: getConfig().SITE_NAME },
+            )}
+            isEditable={this.isEditable('job_title')}
+            onChange={this.handleEditableFieldChange}
+            onSubmit={this.handleSubmitProfileJobTitle}
+            {...editableFieldProps}
+          />
+          <EditableField
+            name="city"
+            type="text"
+            value={this.props.formValues.city}
+            label={this.props.intl.formatMessage(messages['account.settings.field.city'])}
+            helpText={this.props.intl.formatMessage(
+              messages['account.settings.field.city.help.text'],
+              { siteName: getConfig().SITE_NAME },
+            )}
+            isEditable={this.isEditable('city')}
+            onChange={this.handleEditableFieldChange}
+            onSubmit={this.handleSubmitProfileCity}
+            {...editableFieldProps}
+          />
+          <EditableField
+            name="phone_number"
+            type="text"
+            value={this.props.formValues.phone_number}
+            label={this.props.intl.formatMessage(messages['account.settings.field.phone_number'])}
+            helpText={this.props.intl.formatMessage(
+              messages['account.settings.field.phone_number.help.text'],
+              { siteName: getConfig().SITE_NAME },
+            )}
+            isEditable={this.isEditable('phone_number')}
+            onChange={this.handleEditableFieldChange}
+            onSubmit={this.handleSubmitProfilePhoneNumber}
+            {...editableFieldProps}
+          />
+          <EditableField
+            name="language"
+            type="select"
+            value={this.props.formValues.language}
+            options={[
+              { value: 'en', label: 'English' },
+              { value: 'es', label: 'Spanish' },
+            ]}
+            label={this.props.intl.formatMessage(messages['account.settings.field.language'])}
+            emptyLabel={
+              this.isEditable('language')
+                ? this.props.intl.formatMessage(messages['account.settings.field.language.empty'])
+                : this.renderEmptyStaticFieldMessage()
+            }
+            isEditable={this.isEditable('language')}
             {...editableFieldProps}
           />
           {showState
