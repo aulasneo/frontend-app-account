@@ -670,20 +670,6 @@ class AccountSettingsPage extends React.Component {
             onChange={this.handleEditableFieldChange}
             onSubmit={this.handleSubmitProfileName}
           />
-          <EditableField
-            name="last_name"
-            type="text"
-            value={this.props.formValues.last_name}
-            label={this.props.intl.formatMessage(messages['account.settings.field.last_name'])}
-            helpText={this.props.intl.formatMessage(
-              messages['account.settings.field.last_name.help.text'],
-              { siteName: getConfig().SITE_NAME },
-            )}
-            isEditable={this.isEditable('last_name')}
-            onChange={this.handleEditableFieldChange}
-            onSubmit={this.handleSubmitProfileLastName}
-            {...editableFieldProps}
-          />
           {verifiedName
             && (
             <EditableField

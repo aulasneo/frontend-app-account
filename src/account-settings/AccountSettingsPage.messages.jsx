@@ -116,16 +116,6 @@ const messages = defineMessages({
     defaultMessage: 'Label for account settings phone number field.',
     description: 'Help text for the account settings phone number field.',
   },
-  'account.settings.field.last_name': {
-    id: 'account.settings.field.last_name',
-    defaultMessage: 'Last Name',
-    description: 'Label for account settings last name field.',
-  },
-  'account.settings.field.last_name.help.text': {
-    id: 'account.settings.field.last_name.help.text',
-    defaultMessage: 'Label for account settings last name field.',
-    description: 'Help text for the account settings last name field.',
-  },
   'account.settings.field.language': {
     id: 'account.settings.field.language',
     defaultMessage: 'Default Language',
@@ -138,7 +128,7 @@ const messages = defineMessages({
   },
   'account.settings.field.full.name': {
     id: 'account.settings.field.full.name',
-    defaultMessage: 'First Name',
+    defaultMessage: 'Full Name',
     description: 'Label for account settings name field.',
   },
   'account.settings.field.full.name.empty': {

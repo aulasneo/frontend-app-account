@@ -26,7 +26,6 @@ function EditableField(props) {
     job_title,
     city,
     phone_number,
-    last_name,
     language,
     label,
     emptyLabel,
