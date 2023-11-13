@@ -116,16 +116,6 @@ const messages = defineMessages({
     defaultMessage: 'Label for account settings phone number field.',
     description: 'Help text for the account settings phone number field.',
   },
-  'account.settings.field.language': {
-    id: 'account.settings.field.language',
-    defaultMessage: 'Default Language',
-    description: 'Label for account settings default language field.',
-  },
-  'account.settings.field.language.help.text': {
-    id: 'account.settings.field.language.help.text',
-    defaultMessage: 'Label for account settings language field.',
-    description: 'Help text for the account settings language field.',
-  },
   'account.settings.field.full.name': {
     id: 'account.settings.field.full.name',
     defaultMessage: 'Full Name',

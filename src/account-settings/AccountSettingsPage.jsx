@@ -127,9 +127,6 @@ class AccountSettingsPage extends React.Component {
       value: '',
       label: this.props.intl.formatMessage(messages['account.settings.field.country.options.empty']),
     }].concat(getCountryList(locale).map(({ code, name }) => ({ value: code, label: name }))),
-    languageOptions: [{
-      value: []
-    }],
     stateOptions: [{
       value: '',
       label: this.props.intl.formatMessage(messages['account.settings.field.state.options.empty']),
@@ -249,23 +246,6 @@ class AccountSettingsPage extends React.Component {
         {
           formId: 'someRelatedFieldToLastName',
           commitValues: this.props.formValues.someRelatedFieldToLastName,
-        },
-      ], formId);
-    } else {
-      this.props.saveSettings(formId, values);
-    }
-  };
-
-  handleSubmitProfileLanguage = (formId, values) => {
-    if (Object.keys(this.props.drafts).includes('someRelatedFieldToLanguage')) {
-      this.props.saveMultipleSettings([
-        {
-          formId,
-          commitValues: values,
-        },
-        {
-          formId: 'someRelatedFieldToLanguage',
-          commitValues: this.props.formValues.someRelatedFieldToLanguage,
         },
       ], formId);
     } else {
@@ -782,23 +762,6 @@ class AccountSettingsPage extends React.Component {
             isEditable={this.isEditable('phone_number')}
             onChange={this.handleEditableFieldChange}
             onSubmit={this.handleSubmitProfilePhoneNumber}
-            {...editableFieldProps}
-          />
-          <EditableField
-            name="language"
-            type="select"
-            value={this.props.formValues.language}
-            options={[
-              { value: 'en', label: 'English' },
-              { value: 'es', label: 'Spanish' },
-            ]}
-            label={this.props.intl.formatMessage(messages['account.settings.field.language'])}
-            emptyLabel={
-              this.isEditable('language')
-                ? this.props.intl.formatMessage(messages['account.settings.field.language.empty'])
-                : this.renderEmptyStaticFieldMessage()
-            }
-            isEditable={this.isEditable('language')}
             {...editableFieldProps}
           />
           {showState

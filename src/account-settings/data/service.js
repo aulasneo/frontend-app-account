@@ -78,7 +78,7 @@ function packAccountCommitData(commitData) {
   }
 
   packedData.extended_profile = Object.entries(commitData).reduce((result, [key, value]) => {
-    if (key == "job_title" || key == "city" || key == "phone_number" || key == "last_name" || key == "language") {
+    if (key == "job_title" || key == "city" || key == "phone_number" || key == "last_name") {
       result.push({ field_name: key, field_value: value });
     }
     return result;
