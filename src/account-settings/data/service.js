@@ -37,6 +37,12 @@ function unpackAccountResponseData(data) {
     }
   }
 
+  if (Array.isArray(data.extended_profile)) {
+    data.extended_profile.forEach(({ field_name, field_value }) => {
+      unpackedData[field_name] = field_value;
+    });
+  }
+
   return unpackedData;
 }
 
@@ -70,6 +76,14 @@ function packAccountCommitData(commitData) {
       packedData.year_of_birth = null;
     }
   }
+
+  packedData.extended_profile = Object.entries(commitData).reduce((result, [key, value]) => {
+    if (key == "job_title" || key == "city" || key == "phone_number" || key == "last_name") {
+      result.push({ field_name: key, field_value: value });
+    }
+    return result;
+  }, []);
+
   return packedData;
 }
 

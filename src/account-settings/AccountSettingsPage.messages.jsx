@@ -86,6 +86,36 @@ const messages = defineMessages({
     defaultMessage: 'The name that identifies you on {siteName}. You cannot change your username.',
     description: 'Help text for the account settings username field.',
   },
+  'account.settings.field.job_title': {
+    id: 'account.settings.field.job_title',
+    defaultMessage: 'Job title',
+    description: 'Label for account settings job title field.',
+  },
+  'account.settings.field.job_title.help.text': {
+    id: 'account.settings.field.job_title.help.text',
+    defaultMessage: 'Label for account settings job title field.',
+    description: 'Help text for the account settings job title field.',
+  },
+  'account.settings.field.city': {
+    id: 'account.settings.field.city',
+    defaultMessage: 'City',
+    description: 'Label for account settings city field.',
+  },
+  'account.settings.field.city.help.text': {
+    id: 'account.settings.field.city.help.text',
+    defaultMessage: 'Label for account settings city field.',
+    description: 'Help text for the account settings city field.',
+  },
+  'account.settings.field.phone_number': {
+    id: 'account.settings.field.phone_number',
+    defaultMessage: 'Phone Number',
+    description: 'Label for account settings phone number field.',
+  },
+  'account.settings.field.phone_number.help.text': {
+    id: 'account.settings.field.phone_number.help.text',
+    defaultMessage: 'Label for account settings phone number field.',
+    description: 'Help text for the account settings phone number field.',
+  },
   'account.settings.field.full.name': {
     id: 'account.settings.field.full.name',
     defaultMessage: 'Full Name',
