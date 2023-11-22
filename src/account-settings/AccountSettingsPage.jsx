@@ -185,6 +185,74 @@ class AccountSettingsPage extends React.Component {
     }
   };
 
+  handleSubmitProfileCity = (formId, values) => {
+    if (Object.keys(this.props.drafts).includes('someRelatedFieldToCity')) {
+      this.props.saveMultipleSettings([
+        {
+          formId,
+          commitValues: values,
+        },
+        {
+          formId: 'someRelatedFieldToCity',
+          commitValues: this.props.formValues.someRelatedFieldToCity,
+        },
+      ], formId);
+    } else {
+      this.props.saveSettings(formId, values);
+    }
+  };
+
+  handleSubmitProfilePhoneNumber = (formId, values) => {
+    if (Object.keys(this.props.drafts).includes('someRelatedFieldToPhoneNumber')) {
+      this.props.saveMultipleSettings([
+        {
+          formId,
+          commitValues: values,
+        },
+        {
+          formId: 'someRelatedFieldToPhoneNumber',
+          commitValues: this.props.formValues.someRelatedFieldToPhoneNumber,
+        },
+      ], formId);
+    } else {
+      this.props.saveSettings(formId, values);
+    }
+  };
+
+  handleSubmitProfileJobTitle = (formId, values) => {
+    if (Object.keys(this.props.drafts).includes('someRelatedFieldToJobTitle')) {
+      this.props.saveMultipleSettings([
+        {
+          formId,
+          commitValues: values,
+        },
+        {
+          formId: 'someRelatedFieldToJobTitle',
+          commitValues: this.props.formValues.someRelatedFieldToJobTitle,
+        },
+      ], formId);
+    } else {
+      this.props.saveSettings(formId, values);
+    }
+  };
+
+  handleSubmitProfileLastName = (formId, values) => {
+    if (Object.keys(this.props.drafts).includes('someRelatedFieldToLastName')) {
+      this.props.saveMultipleSettings([
+        {
+          formId,
+          commitValues: values,
+        },
+        {
+          formId: 'someRelatedFieldToLastName',
+          commitValues: this.props.formValues.someRelatedFieldToLastName,
+        },
+      ], formId);
+    } else {
+      this.props.saveSettings(formId, values);
+    }
+  };
+
   isEditable(fieldName) {
     return !this.props.staticFields.includes(fieldName);
   }
@@ -652,6 +720,48 @@ class AccountSettingsPage extends React.Component {
                 : this.renderEmptyStaticFieldMessage()
             }
             isEditable={this.isEditable('country')}
+            {...editableFieldProps}
+          />
+          <EditableField
+            name="job_title"
+            type="text"
+            value={this.props.formValues.job_title}
+            label={this.props.intl.formatMessage(messages['account.settings.field.job_title'])}
+            helpText={this.props.intl.formatMessage(
+              messages['account.settings.field.job_title.help.text'],
+              { siteName: getConfig().SITE_NAME },
+            )}
+            isEditable={this.isEditable('job_title')}
+            onChange={this.handleEditableFieldChange}
+            onSubmit={this.handleSubmitProfileJobTitle}
+            {...editableFieldProps}
+          />
+          <EditableField
+            name="city"
+            type="text"
+            value={this.props.formValues.city}
+            label={this.props.intl.formatMessage(messages['account.settings.field.city'])}
+            helpText={this.props.intl.formatMessage(
+              messages['account.settings.field.city.help.text'],
+              { siteName: getConfig().SITE_NAME },
+            )}
+            isEditable={this.isEditable('city')}
+            onChange={this.handleEditableFieldChange}
+            onSubmit={this.handleSubmitProfileCity}
+            {...editableFieldProps}
+          />
+          <EditableField
+            name="phone_number"
+            type="text"
+            value={this.props.formValues.phone_number}
+            label={this.props.intl.formatMessage(messages['account.settings.field.phone_number'])}
+            helpText={this.props.intl.formatMessage(
+              messages['account.settings.field.phone_number.help.text'],
+              { siteName: getConfig().SITE_NAME },
+            )}
+            isEditable={this.isEditable('phone_number')}
+            onChange={this.handleEditableFieldChange}
+            onSubmit={this.handleSubmitProfilePhoneNumber}
             {...editableFieldProps}
           />
           {showState
