@@ -11,7 +11,8 @@ import ReactDOM from 'react-dom';
 import { Route, Switch } from 'react-router-dom';
 
 import { LearningHeader as Header } from '@edx/frontend-component-header';
-//import Header, { messages as headerMessages } from '@edx/frontend-component-header';
+// import Header from '@edx/frontend-component-header';
+import { messages as headerMessages } from '@edx/frontend-component-header';
 import Footer, { messages as footerMessages } from '@edx/frontend-component-footer';
 
 import configureStore from './data/configureStore';
@@ -54,7 +55,7 @@ subscribe(APP_INIT_ERROR, (error) => {
 initialize({
   messages: [
     appMessages,
-  //  headerMessages,
+    headerMessages,
     footerMessages,
   ],
   requireAuthenticatedUser: true,

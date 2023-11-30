@@ -854,7 +854,7 @@ class AccountSettingsPage extends React.Component {
             value={this.props.formValues.language_proficiencies}
             options={languageProficiencyOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies'])}
-            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies.empty'])}
+            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies.empty'])}
             {...editableFieldProps}
           />
           {getConfig().COACHING_ENABLED
