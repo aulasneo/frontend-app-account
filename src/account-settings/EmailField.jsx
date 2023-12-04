@@ -140,7 +140,7 @@ function EmailField(props) {
                 </svg>
               </Button>
               <Button
-                className="button-cancel"
+                className="button-cancel-account"
                 variant="outline-primary"
                 onClick={handleCancel}
               >
