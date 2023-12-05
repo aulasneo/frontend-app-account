@@ -854,7 +854,7 @@ class AccountSettingsPage extends React.Component {
             value={this.props.formValues.language_proficiencies}
             options={languageProficiencyOptions}
             label={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies'])}
-            // emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies.empty'])}
+            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.language.proficiencies.empty'])}
             {...editableFieldProps}
           />
           {getConfig().COACHING_ENABLED
@@ -1007,14 +1007,14 @@ class AccountSettingsPage extends React.Component {
     } = this.props;
 
     return (
-      <div className="page__account-settings container-fluid">
+      <div className="page__account-settings container-fluid-account">
         {this.renderDuplicateTpaProviderMessage()}
         <h1 className="title-account">
           {this.props.intl.formatMessage(messages['account.settings.page.heading'])}
         </h1>
         <div>
           <div className="page-account">
-            <div className="col-md-4">
+            <div className="menu-account">
               <JumpNav
                 displayDemographicsLink={this.props.formValues.shouldDisplayDemographicsSection}
               />
