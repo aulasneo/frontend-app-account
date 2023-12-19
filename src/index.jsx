@@ -27,6 +27,7 @@ import Head from './head/Head';
 subscribe(APP_READY, () => {
   ReactDOM.render(
     <AppProvider store={configureStore()}>
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js-eu1.hs-scripts.com/25527729.js"></script>
       <Head />
       <Switch>
         <Route path="/coaching_consent" component={CoachingConsent} />
