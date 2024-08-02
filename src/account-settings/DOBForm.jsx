@@ -22,23 +22,36 @@ const DOBModal = (props) => {
 
   // eslint-disable-next-line no-unused-vars
   const [isOpen, open, close, toggle] = useToggle(true, {});
-  const [monthValue, setMonthValue] = useState('');
-  const [yearValue, setYearValue] = useState('');
+  // const [monthValue, setMonthValue] = useState('');
+  // const [yearValue, setYearValue] = useState('');
 
-  const handleChange = (e) => {
-    e.preventDefault();
+  // const handleChange = (e) => {
+  //   e.preventDefault();
 
-    if (e.target.name === 'month') {
-      setMonthValue(e.target.value);
-    } else if (e.target.name === 'year') {
-      setYearValue(e.target.value);
-    }
-  };
+  //   if (e.target.name === 'month') {
+  //     setMonthValue(e.target.value);
+  //   } else if (e.target.name === 'year') {
+  //     setYearValue(e.target.value);
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = monthValue !== '' && yearValue !== '' ? [{ field_name: 'DOB', field_value: `${yearValue}-${monthValue}` }] : [];
+    const month = e.target.month.value;
+    const year = e.target.year.value;
+    const profession = e.target.profession.value;
+    const custom_profession = e.target.custom_profession.value;
+    const type_of_organization = e.target.type_of_organization.value;
+    const years_of_experience = e.target.years_of_experience.value;
+
+    const data = [
+      ...(month !== '' && year !== '' ? [{ field_name: 'DOB', field_value: `${year}-${month}` }] : []),
+      ...(profession !== '' ? [{ field_name: 'profession', field_value: profession }] : []),
+      ...(custom_profession !== '' ? [{ field_name: 'custom_profession', field_value: custom_profession }] : []),
+      ...(type_of_organization !== '' ? [{ field_name: 'type_of_organization', field_value: type_of_organization }] : []),
+      ...(years_of_experience !== '' ? [{ field_name: 'years_of_experience', field_value: years_of_experience }] : []),
+    ]
     onSubmit('extended_profile', data);
   };
 
@@ -99,9 +112,8 @@ const DOBModal = (props) => {
               <Form.Control
                 as="select"
                 name="month"
-                onChange={handleChange}
               >
-                <option value="">{intl.formatMessage(messages['account.settings.field.dob.month.default'])}</option>
+                {/* <option value="">{intl.formatMessage(messages['account.settings.field.dob.month.default'])}</option> */}
                 {[...Array(12).keys()].map(month => (
                   <option key={month + 1} value={month + 1}>{month + 1}</option>
                 ))}
@@ -114,7 +126,6 @@ const DOBModal = (props) => {
               <Form.Control
                 as="select"
                 name="year"
-                onChange={handleChange}
               >
                 <option value="">{intl.formatMessage(messages['account.settings.field.dob.year.default'])}</option>
                 {YEAR_OF_BIRTH_OPTIONS.map(year => (
@@ -122,6 +133,42 @@ const DOBModal = (props) => {
                 ))}
               </Form.Control>
             </Form.Group>
+            <Form.Group>
+                <Form.Label>
+                  {intl.formatMessage(messages['account.settings.field.profession'])}
+                </Form.Label>
+                <Form.Control
+                  as="select"
+                  name="profession"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>
+                  {intl.formatMessage(messages['account.settings.field.custom_profession'])}
+                </Form.Label>
+                <Form.Control
+                  as="text"
+                  name="custom_profession"
+                />
+                <Form.Group>
+                <Form.Label>
+                  {intl.formatMessage(messages['account.settings.field.type_of_organization'])}
+                </Form.Label>
+                <Form.Control
+                  as="select"
+                  name="type_of_organization"
+                />
+              </Form.Group>
+              </Form.Group>
+            <Form.Group>
+                <Form.Label>
+                  {intl.formatMessage(messages['account.settings.field.years_of_experience'])}
+                </Form.Label>
+                <Form.Control
+                  as="select"
+                  name="years_of_experience"
+                />
+              </Form.Group>
             {renderErrors()}
           </ModalDialog.Body>
 

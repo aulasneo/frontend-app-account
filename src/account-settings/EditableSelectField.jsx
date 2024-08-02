@@ -25,6 +25,7 @@ const EditableSelectField = (props) => {
     emptyLabel,
     type,
     value,
+    defaultProps,
     userSuppliedValue,
     options,
     saveState,
@@ -42,7 +43,12 @@ const EditableSelectField = (props) => {
     intl,
     ...others
   } = props;
+
   const id = `field-${name}`;
+  console.log("confirmationValue",confirmationValue)
+  console.log("name", name)
+  console.log("value", value)
+  console.log("options", options)
 
   const handleSubmit = (e) => {
     e.preventDefault();
