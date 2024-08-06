@@ -276,6 +276,16 @@ const messages = defineMessages({
     defaultMessage: 'Year',
     description: 'Label for account settings year of birth field.',
   },
+  'account.settings.field.dob.month.default': {
+    id: 'account.settings.field.month.year.default',
+    defaultMessage: 'Select month',
+    description: 'Default label for account settings month of birth field.',
+  },
+  'account.settings.field.dob.year.default': {
+    id: 'account.settings.field.dob.year.default',
+    defaultMessage: 'Select year',
+    description: 'Default label for account settings year of birth field.',
+  },
   'account.settings.field.dob.form.button': {
     id: 'account.settings.field.dob.form.button',
     defaultMessage: 'Please confirm your date of birth',
@@ -283,17 +293,17 @@ const messages = defineMessages({
   },
   'account.settings.field.dob.form.title': {
     id: 'account.settings.field.dob.form.title',
-    defaultMessage: 'Confirm your date of birth',
+    defaultMessage: 'Enter your birth month and year',
     description: 'Title of DOB form',
   },
   'account.settings.field.dob.form.help.text': {
     id: 'account.settings.field.dob.form.help.text',
-    defaultMessage: 'We ask for birth date information to help us comply with our legal obligations.',
+    defaultMessage: 'We ask for birth month and year information to help us comply with our legal obligations.',
     description: 'Help text for DOB form',
   },
   'account.settings.field.dob.form.success': {
     id: 'account.settings.field.dob.form.success',
-    defaultMessage: 'Thank you for entering your birth date information.',
+    defaultMessage: 'Thank you for entering your information.',
     description: 'Title of banner when date of birth is successfully entered',
   },
   'account.settings.field.month_of_birth.options.empty': {
@@ -401,10 +411,209 @@ const messages = defineMessages({
     defaultMessage: 'No formal education',
     description: 'Selected by the user to describe their education.',
   },
-  'account.settings.field.education.levels.o': {
-    id: 'account.settings.field.education.levels.o',
+  'account.settings.field.education.levels.other': {
+    id: 'account.settings.field.education.levels.other',
     defaultMessage: 'Other education',
     description: 'Selected by the user if they have a type of education not described by the other choices.',
+  },
+  'account.settings.field.profession': {
+    id: 'account.settings.field.profession',
+    defaultMessage: 'Profession',
+    description: 'Profession',
+  },
+  'account.settings.field.profession.empty': {
+    id: 'account.settings.field.profession.empty',
+    defaultMessage: 'Select your profession',
+    description: 'Select your Profession',
+  },
+  'account.settings.field.profession.options.empty': {
+    id: 'account.settings.field.profession.options.empty',
+    defaultMessage: 'Select your profession',
+    description: 'Select your Profession',
+  },
+  'account.settings.field.profession.options.prof1': {
+    id: 'account.settings.field.profession.option.prof1',
+    defaultMessage: 'Architect',
+    description: 'Profession Architect',
+  },
+  'account.settings.field.profession.options.prof2': {
+    id: 'account.settings.field.profession.option.prof2',
+    defaultMessage: 'Engineer',
+    description: 'Profession Engineer',
+  },
+  'account.settings.field.profession.options.prof3': {
+    id: 'account.settings.field.profession.option.prof3',
+    defaultMessage: 'Contractor',
+    description: 'Profession Contractor',
+  },
+  'account.settings.field.profession.options.prof4': {
+    id: 'account.settings.field.profession.option.prof4',
+    defaultMessage: 'Surveyor',
+    description: 'Profession Surveyor',
+  },
+  'account.settings.field.profession.options.prof5': {
+    id: 'account.settings.field.profession.option.prof5',
+    defaultMessage: 'Project Manager',
+    description: 'Profession Project Manager',
+  },
+  'account.settings.field.profession.options.prof6': {
+    id: 'account.settings.field.profession.option.prof6',
+    defaultMessage: 'Interior Designer',
+    description: 'Profession Interior Designer',
+  },
+  'account.settings.field.profession.options.prof7': {
+    id: 'account.settings.field.profession.option.prof7',
+    defaultMessage: 'Furniture Designer',
+    description: 'Profession Furniture Designer',
+  },
+  'account.settings.field.profession.options.prof8': {
+    id: 'account.settings.field.profession.option.prof8',
+    defaultMessage: 'Academic',
+    description: 'Profession Academic',
+  },
+  'account.settings.field.profession.options.prof9': {
+    id: 'account.settings.field.profession.option.prof9',
+    defaultMessage: 'Finance Controller',
+    description: 'Profession Finance Controller',
+  },
+  'account.settings.field.profession.options.prof10': {
+    id: 'account.settings.field.profession.option.prof10',
+    defaultMessage: 'Sustainability Consultant',
+    description: 'Profession Sustainability Consultant',
+  },
+  'account.settings.field.profession.options.prof11': {
+    id: 'account.settings.field.profession.option.prof11',
+    defaultMessage: 'Carpenter',
+    description: 'Profession Carpenter',
+  },
+  'account.settings.field.profession.options.prof12': {
+    id: 'account.settings.field.profession.option.prof12',
+    defaultMessage: 'Urban Planner',
+    description: 'Profession Urban Planner',
+  },
+  'account.settings.field.profession.options.prof13': {
+    id: 'account.settings.field.profession.option.prof13',
+    defaultMessage: 'Policymaker',
+    description: 'Profession Policymaker',
+  },
+  'account.settings.field.profession.options.prof14': {
+    id: 'account.settings.field.profession.option.prof14',
+    defaultMessage: 'Communications',
+    description: 'Profession Communications',
+  },
+  'account.settings.field.profession.options.prof15': {
+    id: 'account.settings.field.profession.option.prof15',
+    defaultMessage: 'Builder',
+    description: 'Profession Builder',
+  },
+  'account.settings.field.profession.options.prof16': {
+    id: 'account.settings.field.profession.option.prof16',
+    defaultMessage: 'Tradesperson',
+    description: 'Profession Tradesperson',
+  },
+  'account.settings.field.profession.options.prof17': {
+    id: 'account.settings.field.profession.option.prof17',
+    defaultMessage: 'Inspector',
+    description: 'Profession Inspector',
+  },
+  'account.settings.field.profession.options.prof18': {
+    id: 'account.settings.field.profession.option.prof18',
+    defaultMessage: 'Material Technologist',
+    description: 'Profession Material Technologist',
+  },
+  'account.settings.field.profession.options.prof19': {
+    id: 'account.settings.field.profession.option.prof19',
+    defaultMessage: 'Manufacturer',
+    description: 'Profession Manufacturer',
+  },
+  'account.settings.field.profession.options.prof20': {
+    id: 'account.settings.field.profession.option.prof20',
+    defaultMessage: 'Urban Planner',
+    description: 'Profession Urban Planner',
+  },
+  'account.settings.field.profession.options.prof21': {
+    id: 'account.settings.field.profession.option.prof21',
+    defaultMessage: 'Others',
+    description: 'Others',
+  },
+
+  'account.settings.field.custom_profession': {
+    id: 'account.settings.field.custom_profession',
+    defaultMessage: 'Custom Profession',
+    description: 'Custom Profession',
+  },
+
+  'account.settings.field.custom_profession.empty': {
+    id: 'account.settings.field.custom_profession.empty',
+    defaultMessage: 'Add your custom profession',
+    description: 'Custom Profession',
+  },
+
+  'account.settings.field.type_of_organization': {
+    id: 'account.settings.field.type_of_organization',
+    defaultMessage: 'Type of Organization',
+    description: 'Type of Organization',
+  },
+  'account.settings.field.type_of_organization.options.empty': {
+    id: 'account.settings.field.type_of_organization.option.empty',
+    defaultMessage: 'Select your type of organization',
+    description: 'Select your Organization',
+  },
+  'account.settings.field.type_of_organization.options.pr': {
+    id: 'account.settings.field.type_of_organization.option.pr',
+    defaultMessage: 'Private',
+    description: 'Private Organization',
+  },
+  'account.settings.field.type_of_organization.options.pu': {
+    id: 'account.settings.field.type_of_organization.option.pu',
+    defaultMessage: 'Public',
+    description: 'Public Organization',
+  },
+  'account.settings.field.type_of_organization.options.ng': {
+    id: 'account.settings.field.type_of_organization.option.ng',
+    defaultMessage: 'Non-Governmental',
+    description: 'Organization Non-Governmental',
+  },
+  'account.settings.field.type_of_organization.options.np': {
+    id: 'account.settings.field.type_of_organization.option.np',
+    defaultMessage: 'Non-Profit',
+    description: 'Organization Non-Profit',
+  },
+  'account.settings.field.type_of_organization.options.a': {
+    id: 'account.settings.field.type_of_organization.option.a',
+    defaultMessage: 'Academic',
+    description: 'Organization Academic',
+  },
+
+  'account.settings.field.years_of_experience': {
+    id: 'account.settings.field.years_of_experience',
+    defaultMessage: 'Years of experience',
+    description: 'Years of experience',
+  },
+  'account.settings.field.years_of_experience.options.empty': {
+    id: 'account.settings.field.years_of_experience.options.empty',
+    defaultMessage: 'Select years of experience',
+    description: 'The label for the empty years of experience option.',
+  },
+  'account.settings.field.years_of_experience.options.0': {
+    id: 'account.settings.field.years_of_experience.options.0',
+    defaultMessage: '0-2',
+    description: 'The label for the 0-2 years of experience option.',
+  },
+  'account.settings.field.years_of_experience.options.1': {
+    id: 'account.settings.field.years_of_experience.options.1',
+    defaultMessage: '2-5',
+    description: 'The label for the 2-5 years of experience option.',
+  },
+  'account.settings.field.years_of_experience.options.2': {
+    id: 'account.settings.field.years_of_experience.options.2',
+    defaultMessage: '5-10',
+    description: 'The label for the 5-10 years of experience option.',
+  },
+  'account.settings.field.years_of_experience.options.3': {
+    id: 'account.settings.field.years_of_experience.options.3',
+    defaultMessage: '+10',
+    description: 'The label for the +10 years of experience option.',
   },
 
   'account.settings.field.gender': {

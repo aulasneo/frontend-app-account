@@ -22,6 +22,10 @@ import CertificatePreference from './certificate-preference/CertificatePreferenc
 
 function EditableField(props) {
   const {
+    years_of_experience,
+    custom_profession,
+    type_of_organization,
+    profession,
     name,
     label,
     emptyLabel,
@@ -45,6 +49,7 @@ function EditableField(props) {
     ...others
   } = props;
   const id = `field-${name}`;
+
   let inputOptions = options;
   if (getConfig().ENABLE_COPPA_COMPLIANCE && name === 'level_of_education' && options) {
     inputOptions = options.filter(option => option.value !== 'el');
@@ -92,7 +97,6 @@ function EditableField(props) {
     if (userSuppliedValue) {
       finalValue += `: ${userSuppliedValue}`;
     }
-
     return finalValue;
   };
 
@@ -103,6 +107,20 @@ function EditableField(props) {
     return intl.formatMessage(confirmationMessageDefinition, {
       value: confirmationValue,
     });
+  };
+
+  const determineValueToRender = () => {
+    if (profession) {
+      return renderValue(profession);
+    } else if (custom_profession) {
+      return renderValue(custom_profession);
+    } else if (type_of_organization) {
+      return renderValue(type_of_organization)
+    } else if (years_of_experience) {
+      return renderValue(years_of_experience)
+    } else {
+      return renderValue(value);
+    }
   };
 
   return (
@@ -140,13 +158,6 @@ function EditableField(props) {
                     default: intl.formatMessage(messages['account.settings.editable.field.action.save']),
                   }}
                   onClick={(e) => {
-                    // Swallow clicks if the state is pending.
-                    // We do this instead of disabling the button to prevent
-                    // it from losing focus (disabled elements cannot have focus).
-                    // Disabling it would causes upstream issues in focus management.
-                    // Swallowing the onSubmit event on the form would be better, but
-                    // we would have to add that logic for every field given our
-                    // current structure of the application.
                     if (saveState === 'pending') { e.preventDefault(); }
                   }}
                   disabledStates={[]}
@@ -172,7 +183,7 @@ function EditableField(props) {
                 </Button>
               ) : null}
             </div>
-            <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{renderValue(value)}</p>
+            <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{determineValueToRender()}</p>
             <p className="small text-muted mt-n2">{renderConfirmationMessage() || helpText}</p>
           </div>
         ),
