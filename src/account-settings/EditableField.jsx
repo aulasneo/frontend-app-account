@@ -21,6 +21,7 @@ import CertificatePreference from './certificate-preference/CertificatePreferenc
 
 const EditableField = (props) => {
   const {
+    custom_profession,
     name,
     label,
     emptyLabel,
@@ -90,6 +91,14 @@ const EditableField = (props) => {
     });
   };
 
+  const determineValueToRender = () => {
+   if (custom_profession) {
+      return renderValue(custom_profession);
+    } else {
+      return renderValue(value);
+    }
+  };
+
   return (
     <SwitchContent
       expression={isEditing ? 'editing' : 'default'}
@@ -156,7 +165,7 @@ const EditableField = (props) => {
                 </Button>
               ) : null}
             </div>
-            <p data-hj-suppress className={classNames('text-truncate', { 'grayed-out': isGrayedOut })}>{renderValue(value)}</p>
+            <p data-hj-suppress className={classNames('text-truncate', { 'grayed-out': isGrayedOut })}>{determineValueToRender()}</p>
             <p className="small text-muted mt-n2">{renderConfirmationMessage() || helpText}</p>
           </div>
         ),

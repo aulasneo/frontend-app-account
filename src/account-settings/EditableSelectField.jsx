@@ -20,6 +20,9 @@ import CertificatePreference from './certificate-preference/CertificatePreferenc
 
 const EditableSelectField = (props) => {
   const {
+    years_of_experience,
+    type_of_organization,
+    profession,
     name,
     label,
     emptyLabel,
@@ -121,6 +124,18 @@ const EditableSelectField = (props) => {
     );
   });
 
+  const determineValueToRender = () => {
+    if (profession) {
+      return renderValue(profession);
+    } else if (type_of_organization) {
+      return renderValue(type_of_organization)
+    } else if (years_of_experience) {
+      return renderValue(years_of_experience)
+    } else {
+      return renderValue(value);
+    }
+  };
+
   return (
     <SwitchContent
       expression={isEditing ? 'editing' : 'default'}
@@ -190,7 +205,7 @@ const EditableSelectField = (props) => {
                 </Button>
               ) : null}
             </div>
-            <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{renderValue(value)}</p>
+            <p data-hj-suppress className={isGrayedOut ? 'grayed-out' : null}>{determineValueToRender()}</p>
             <p className="small text-muted mt-n2">{renderConfirmationMessage() || helpText}</p>
           </div>
         ),

@@ -38,7 +38,19 @@ const DOBModal = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = monthValue !== '' && yearValue !== '' ? [{ field_name: 'DOB', field_value: `${yearValue}-${monthValue}` }] : [];
+    const profession = e.target.profession.value;
+    const custom_profession = e.target.custom_profession.value;
+    const type_of_organization = e.target.type_of_organization.value;
+    const years_of_experience = e.target.years_of_experience.value;
+    const month = e.target.month.value;
+    const year = e.target.year.value;
+    const data = [
+      ...(month !== '' && year !== '' ? [{ field_name: 'DOB', field_value: `${year}-${month}` }] : []),
+      ...(profession !== '' ? [{ field_name: 'profession', field_value: profession }] : []),
+      ...(custom_profession !== '' ? [{ field_name: 'custom_profession', field_value: custom_profession }] : []),
+      ...(type_of_organization !== '' ? [{ field_name: 'type_of_organization', field_value: type_of_organization }] : []),
+      ...(years_of_experience !== '' ? [{ field_name: 'years_of_experience', field_value: years_of_experience }] : []),
+    ];
     onSubmit('extended_profile', data);
   };
 
@@ -121,6 +133,43 @@ const DOBModal = (props) => {
                   <option key={year.value} value={year.value}>{year.label}</option>
                 ))}
               </Form.Control>
+              <Form.Group>
+                <Form.Label>
+                  {intl.formatMessage(messages['account.settings.field.profession'])}
+                </Form.Label>
+                <Form.Control
+                  as="select"
+                  name="profession"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>
+                  {intl.formatMessage(messages['account.settings.field.custom_profession'])}
+                </Form.Label>
+                <Form.Control
+                  as="text"
+                  name="custom_profession"
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>
+                  {intl.formatMessage(messages['account.settings.field.type_of_organization'])}
+                </Form.Label>
+                <Form.Control
+                  as="select"
+                  name="type_of_organization"
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label>
+                  {intl.formatMessage(messages['account.settings.field.years_of_experience'])}
+                </Form.Label>
+                <Form.Control
+                  as="select"
+                  name="years_of_experience"
+                />
+              </Form.Group>
             </Form.Group>
             {renderErrors()}
           </ModalDialog.Body>

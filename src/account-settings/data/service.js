@@ -69,6 +69,14 @@ function packAccountCommitData(commitData) {
       packedData.year_of_birth = null;
     }
   }
+
+  packedData.extended_profile = Object.entries(commitData).reduce((result, [key, value]) => {
+    if (key == "profession" || key == "custom_profession" || key == "type_of_organization" || key == "years_of_experience") {
+      result.push({ field_name: key, field_value: value });
+    }
+    return result;
+  }, []);
+  
   return packedData;
 }
 
