@@ -60,14 +60,14 @@ export const PROFESSION_OPTIONS = [
   'prof21'
 ];
 
-export const TYPE_OF_ORGANIZATION_OPTIONS = [
-  '',
-  'pr',
-  'pu',
-  'ng',
-  'np',
-  'a'
-];
+// export const TYPE_OF_ORGANIZATION_OPTIONS = [
+//   '',
+//   'pr',
+//   'pu',
+//   'ng',
+//   'np',
+//   'a'
+// ];
 
 export const YEARS_OF_EXPERIENCE_OPTIONS = [
   '',

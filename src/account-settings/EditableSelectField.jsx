@@ -21,7 +21,7 @@ import CertificatePreference from './certificate-preference/CertificatePreferenc
 const EditableSelectField = (props) => {
   const {
     years_of_experience,
-    type_of_organization,
+    // type_of_organization,
     profession,
     name,
     label,
@@ -127,8 +127,8 @@ const EditableSelectField = (props) => {
   const determineValueToRender = () => {
     if (profession) {
       return renderValue(profession);
-    } else if (type_of_organization) {
-      return renderValue(type_of_organization)
+    // } else if (type_of_organization) {
+    //   return renderValue(type_of_organization)
     } else if (years_of_experience) {
       return renderValue(years_of_experience)
     } else {

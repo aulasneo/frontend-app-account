@@ -548,6 +548,18 @@ const messages = defineMessages({
     defaultMessage: 'Add your custom profession',
     description: 'Custom Profession',
   },
+  
+  'account.settings.field.organization_name': {
+    id: 'account.settings.field.organization_name',
+    defaultMessage: 'Organization Name',
+    description: 'Organization Name',
+  },
+
+  'account.settings.field.organization_name.empty': {
+    id: 'account.settings.field.organization_name.empty',
+    defaultMessage: 'Add your organization name',
+    description: 'Organization Name',
+  },
 
   'account.settings.field.type_of_organization': {
     id: 'account.settings.field.type_of_organization',

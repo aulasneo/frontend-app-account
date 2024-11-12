@@ -46,7 +46,7 @@ import {
   COUNTRY_WITH_STATES,
   COPPA_COMPLIANCE_YEAR,
   getStatesList,
-  TYPE_OF_ORGANIZATION_OPTIONS,
+  // TYPE_OF_ORGANIZATION_OPTIONS,
   PROFESSION_OPTIONS,
   YEARS_OF_EXPERIENCE_OPTIONS,
 } from './data/constants';
@@ -145,10 +145,10 @@ class AccountSettingsPage extends React.Component {
       value: key,
       label: this.props.intl.formatMessage(messages[`account.settings.field.gender.options.${key || 'empty'}`]),
     })),
-    typeOfOrganizationOptions: TYPE_OF_ORGANIZATION_OPTIONS.map(key => ({
-      value: key,
-      label: this.props.intl.formatMessage(messages[`account.settings.field.type_of_organization.options.${key || 'empty'}`]),
-    })),
+    // typeOfOrganizationOptions: TYPE_OF_ORGANIZATION_OPTIONS.map(key => ({
+    //   value: key,
+    //   label: this.props.intl.formatMessage(messages[`account.settings.field.type_of_organization.options.${key || 'empty'}`]),
+    // })),
     professionOptions: PROFESSION_OPTIONS.map(key => ({
       value: key,
       label: this.props.intl.formatMessage(messages[`account.settings.field.profession.options.${key || 'empty'}`]),
@@ -489,7 +489,7 @@ class AccountSettingsPage extends React.Component {
       yearOfBirthOptions,
       educationLevelOptions,
       genderOptions,
-      typeOfOrganizationOptions,
+      // typeOfOrganizationOptions,
       professionOptions,
       yearsOfExperienceOptions
     } = this.getLocalizedOptions(this.context.locale, this.props.formValues.country);
@@ -517,8 +517,9 @@ class AccountSettingsPage extends React.Component {
 
     const profession = this.props.formValues.extended_profile[0].field_value;
     const custom_profession = this.props.formValues.extended_profile[1].field_value;
-    const type_of_organization = this.props.formValues.extended_profile[2].field_value;
-    const years_of_experience = this.props.formValues.extended_profile[3].field_value;
+    // const type_of_organization = this.props.formValues.extended_profile[2].field_value;
+    const organization_name = this.props.formValues.extended_profile[3].field_value;
+    const years_of_experience = this.props.formValues.extended_profile[4].field_value;
 
     return (
       <>
@@ -711,7 +712,7 @@ class AccountSettingsPage extends React.Component {
               {...editableFieldProps}
             />
           }
-          <EditableSelectField
+          {/* <EditableSelectField
             name="type_of_organization"
             type="select"
             value={this.props.type_of_organization}
@@ -722,7 +723,17 @@ class AccountSettingsPage extends React.Component {
 
             onChange={this.handleEditableFieldChangeExtended}
             {...editableFieldProps}
-          />
+          /> */}
+          <EditableField
+              name="organization_name"
+              type="text"
+              organization_name={organization_name}
+              value={this.props.organization_name}
+              label={this.props.intl.formatMessage(messages['account.settings.field.organization_name'])}
+              emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.organization_name.empty'])}
+              onChange={this.handleEditableFieldChangeExtended}
+              {...editableFieldProps}
+            />
           <EditableSelectField
             name="years_of_experience"
             type="select"
@@ -922,7 +933,8 @@ AccountSettingsPage.propTypes = {
     email: PropTypes.string,
     profession: PropTypes.string,
     custom_profession: PropTypes.string,
-    type_of_organization: PropTypes.string,
+    // type_of_organization: PropTypes.string,
+    organization_name: PropTypes.string, 
     years_of_experience: PropTypes.string,
     secondary_email: PropTypes.string,
     secondary_email_enabled: PropTypes.bool,

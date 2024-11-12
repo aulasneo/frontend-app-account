@@ -40,7 +40,8 @@ const DOBModal = (props) => {
 
     const profession = e.target.profession.value;
     const custom_profession = e.target.custom_profession.value;
-    const type_of_organization = e.target.type_of_organization.value;
+    // const type_of_organization = e.target.type_of_organization.value;
+    const organization_name = e.target.organization_name.value;
     const years_of_experience = e.target.years_of_experience.value;
     const month = e.target.month.value;
     const year = e.target.year.value;
@@ -48,7 +49,8 @@ const DOBModal = (props) => {
       ...(month !== '' && year !== '' ? [{ field_name: 'DOB', field_value: `${year}-${month}` }] : []),
       ...(profession !== '' ? [{ field_name: 'profession', field_value: profession }] : []),
       ...(custom_profession !== '' ? [{ field_name: 'custom_profession', field_value: custom_profession }] : []),
-      ...(type_of_organization !== '' ? [{ field_name: 'type_of_organization', field_value: type_of_organization }] : []),
+      // ...(type_of_organization !== '' ? [{ field_name: 'type_of_organization', field_value: type_of_organization }] : []),
+      ...(organization_name !== '' ? [{ field_name: 'organization_name', field_value: organization_name }] : []),
       ...(years_of_experience !== '' ? [{ field_name: 'years_of_experience', field_value: years_of_experience }] : []),
     ];
     onSubmit('extended_profile', data);
@@ -151,13 +153,22 @@ const DOBModal = (props) => {
                   name="custom_profession"
                 />
               </Form.Group>
-              <Form.Group>
+              {/* <Form.Group>
                 <Form.Label>
                   {intl.formatMessage(messages['account.settings.field.type_of_organization'])}
                 </Form.Label>
                 <Form.Control
                   as="select"
                   name="type_of_organization"
+                />
+              </Form.Group> */}
+              <Form.Group>
+                <Form.Label>
+                  {intl.formatMessage(messages['account.settings.field.organization_name'])}
+                </Form.Label>
+                <Form.Control
+                  as="text"
+                  name="organization_name"
                 />
               </Form.Group>
 

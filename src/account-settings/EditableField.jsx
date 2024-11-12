@@ -22,6 +22,7 @@ import CertificatePreference from './certificate-preference/CertificatePreferenc
 const EditableField = (props) => {
   const {
     custom_profession,
+    organization_name,
     name,
     label,
     emptyLabel,
@@ -94,6 +95,8 @@ const EditableField = (props) => {
   const determineValueToRender = () => {
    if (custom_profession) {
       return renderValue(custom_profession);
+    } else if (organization_name) {
+        return renderValue(organization_name)
     } else {
       return renderValue(value);
     }
