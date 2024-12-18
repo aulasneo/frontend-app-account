@@ -700,7 +700,7 @@ class AccountSettingsPage extends React.Component {
             onChange={this.handleEditableFieldChangeExtended}
             {...editableFieldProps}
           />
-          {this.props.formValues.extended_profile[0].field_value == "prof21" &&
+          {this.props.formValues.extended_profile[0].field_value == "Others" &&
             <EditableField
               name="custom_profession"
               type="text"

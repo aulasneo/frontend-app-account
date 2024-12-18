@@ -431,107 +431,107 @@ const messages = defineMessages({
     defaultMessage: 'Select your profession',
     description: 'Select your Profession',
   },
-  'account.settings.field.profession.options.prof1': {
+  'account.settings.field.profession.options.Architect': {
     id: 'account.settings.field.profession.option.prof1',
     defaultMessage: 'Architect',
     description: 'Profession Architect',
   },
-  'account.settings.field.profession.options.prof2': {
+  'account.settings.field.profession.options.Engineer': {
     id: 'account.settings.field.profession.option.prof2',
     defaultMessage: 'Engineer',
     description: 'Profession Engineer',
   },
-  'account.settings.field.profession.options.prof3': {
+  'account.settings.field.profession.options.Contractor': {
     id: 'account.settings.field.profession.option.prof3',
     defaultMessage: 'Contractor',
     description: 'Profession Contractor',
   },
-  'account.settings.field.profession.options.prof4': {
+  'account.settings.field.profession.options.Surveyor': {
     id: 'account.settings.field.profession.option.prof4',
     defaultMessage: 'Surveyor',
     description: 'Profession Surveyor',
   },
-  'account.settings.field.profession.options.prof5': {
+  'account.settings.field.profession.options.Project Manager': {
     id: 'account.settings.field.profession.option.prof5',
     defaultMessage: 'Project Manager',
     description: 'Profession Project Manager',
   },
-  'account.settings.field.profession.options.prof6': {
+  'account.settings.field.profession.options.Interior Designer': {
     id: 'account.settings.field.profession.option.prof6',
     defaultMessage: 'Interior Designer',
     description: 'Profession Interior Designer',
   },
-  'account.settings.field.profession.options.prof7': {
+  'account.settings.field.profession.options.Furniture Designer': {
     id: 'account.settings.field.profession.option.prof7',
     defaultMessage: 'Furniture Designer',
     description: 'Profession Furniture Designer',
   },
-  'account.settings.field.profession.options.prof8': {
+  'account.settings.field.profession.options.Academic': {
     id: 'account.settings.field.profession.option.prof8',
     defaultMessage: 'Academic',
     description: 'Profession Academic',
   },
-  'account.settings.field.profession.options.prof9': {
+  'account.settings.field.profession.options.Finance Controller': {
     id: 'account.settings.field.profession.option.prof9',
     defaultMessage: 'Finance Controller',
     description: 'Profession Finance Controller',
   },
-  'account.settings.field.profession.options.prof10': {
+  'account.settings.field.profession.options.Sustainability Consultant': {
     id: 'account.settings.field.profession.option.prof10',
     defaultMessage: 'Sustainability Consultant',
     description: 'Profession Sustainability Consultant',
   },
-  'account.settings.field.profession.options.prof11': {
+  'account.settings.field.profession.options.Carpenter': {
     id: 'account.settings.field.profession.option.prof11',
     defaultMessage: 'Carpenter',
     description: 'Profession Carpenter',
   },
-  'account.settings.field.profession.options.prof12': {
+  'account.settings.field.profession.options.Urban Planner': {
     id: 'account.settings.field.profession.option.prof12',
     defaultMessage: 'Urban Planner',
     description: 'Profession Urban Planner',
   },
-  'account.settings.field.profession.options.prof13': {
+  'account.settings.field.profession.options.Policymaker': {
     id: 'account.settings.field.profession.option.prof13',
     defaultMessage: 'Policymaker',
     description: 'Profession Policymaker',
   },
-  'account.settings.field.profession.options.prof14': {
+  'account.settings.field.profession.options.Communications': {
     id: 'account.settings.field.profession.option.prof14',
     defaultMessage: 'Communications',
     description: 'Profession Communications',
   },
-  'account.settings.field.profession.options.prof15': {
+  'account.settings.field.profession.options.Builder': {
     id: 'account.settings.field.profession.option.prof15',
     defaultMessage: 'Builder',
     description: 'Profession Builder',
   },
-  'account.settings.field.profession.options.prof16': {
+  'account.settings.field.profession.options.Tradesperson': {
     id: 'account.settings.field.profession.option.prof16',
     defaultMessage: 'Tradesperson',
     description: 'Profession Tradesperson',
   },
-  'account.settings.field.profession.options.prof17': {
+  'account.settings.field.profession.options.Inspector': {
     id: 'account.settings.field.profession.option.prof17',
     defaultMessage: 'Inspector',
     description: 'Profession Inspector',
   },
-  'account.settings.field.profession.options.prof18': {
+  'account.settings.field.profession.options.Material Technologist': {
     id: 'account.settings.field.profession.option.prof18',
     defaultMessage: 'Material Technologist',
     description: 'Profession Material Technologist',
   },
-  'account.settings.field.profession.options.prof19': {
+  'account.settings.field.profession.options.Manufacturer': {
     id: 'account.settings.field.profession.option.prof19',
     defaultMessage: 'Manufacturer',
     description: 'Profession Manufacturer',
   },
-  'account.settings.field.profession.options.prof20': {
+  'account.settings.field.profession.options.Urban Planner': {
     id: 'account.settings.field.profession.option.prof20',
     defaultMessage: 'Urban Planner',
     description: 'Profession Urban Planner',
   },
-  'account.settings.field.profession.options.prof21': {
+  'account.settings.field.profession.options.Others': {
     id: 'account.settings.field.profession.option.prof21',
     defaultMessage: 'Others',
     description: 'Others',
@@ -607,22 +607,22 @@ const messages = defineMessages({
     defaultMessage: 'Select years of experience',
     description: 'The label for the empty years of experience option.',
   },
-  'account.settings.field.years_of_experience.options.0': {
+  'account.settings.field.years_of_experience.options.0-2': {
     id: 'account.settings.field.years_of_experience.options.0',
     defaultMessage: '0-2',
     description: 'The label for the 0-2 years of experience option.',
   },
-  'account.settings.field.years_of_experience.options.1': {
+  'account.settings.field.years_of_experience.options.2-5': {
     id: 'account.settings.field.years_of_experience.options.1',
     defaultMessage: '2-5',
     description: 'The label for the 2-5 years of experience option.',
   },
-  'account.settings.field.years_of_experience.options.2': {
+  'account.settings.field.years_of_experience.options.5-10': {
     id: 'account.settings.field.years_of_experience.options.2',
     defaultMessage: '5-10',
     description: 'The label for the 5-10 years of experience option.',
   },
-  'account.settings.field.years_of_experience.options.3': {
+  'account.settings.field.years_of_experience.options.10+': {
     id: 'account.settings.field.years_of_experience.options.3',
     defaultMessage: '+10',
     description: 'The label for the +10 years of experience option.',
