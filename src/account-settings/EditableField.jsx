@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import classNames from 'classnames';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import {
   Button, Form, StatefulButton,
@@ -21,6 +22,8 @@ import CertificatePreference from './certificate-preference/CertificatePreferenc
 
 const EditableField = (props) => {
   const {
+    custom_profession,
+    organization_name,
     name,
     label,
     emptyLabel,
@@ -88,6 +91,16 @@ const EditableField = (props) => {
     return intl.formatMessage(confirmationMessageDefinition, {
       value: confirmationValue,
     });
+  };
+
+  const determineValueToRender = () => {
+   if (custom_profession) {
+      return renderValue(custom_profession);
+    } else if (organization_name) {
+        return renderValue(organization_name)
+    } else {
+      return renderValue(value);
+    }
   };
 
   return (

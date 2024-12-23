@@ -50,6 +50,48 @@ export const WORK_EXPERIENCE_OPTIONS = [
 
 ];
 
+export const PROFESSION_OPTIONS = [
+  '',
+  'prof1',
+  'prof2',
+  'prof3',
+  'prof4',
+  'prof5',
+  'prof6',
+  'prof7',
+  'prof8',
+  'prof9',
+  'prof10',
+  'prof11',
+  'prof12',
+  'prof13',
+  'prof14',
+  'prof15',
+  'prof16',
+  'prof17',
+  'prof18',
+  'prof19',
+  'prof20',
+  'prof21'
+];
+
+// export const TYPE_OF_ORGANIZATION_OPTIONS = [
+//   '',
+//   'pr',
+//   'pu',
+//   'ng',
+//   'np',
+//   'a'
+// ];
+
+export const YEARS_OF_EXPERIENCE_OPTIONS = [
+  '',
+  '0',
+  '1',
+  '2',
+  '3'
+];
+
 export const COUNTRY_WITH_STATES = 'US';
 
 export const TRANSIFEX_LANGUAGE_BASE_URL = 'https://www.transifex.com/open-edx/edx-platform/language/';

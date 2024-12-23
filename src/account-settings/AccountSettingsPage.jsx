@@ -47,6 +47,9 @@ import {
   COPPA_COMPLIANCE_YEAR,
   WORK_EXPERIENCE_OPTIONS,
   getStatesList,
+  // TYPE_OF_ORGANIZATION_OPTIONS,
+  PROFESSION_OPTIONS,
+  YEARS_OF_EXPERIENCE_OPTIONS,
 } from './data/constants';
 import { fetchSiteLanguages } from './site-language';
 import DemographicsSection from './demographics/DemographicsSection';
@@ -151,6 +154,11 @@ class AccountSettingsPage extends React.Component {
 
   handleEditableFieldChange = (name, value) => {
     this.props.updateDraft(name, value);
+  };
+
+  handleEditableFieldChangeExtended = (name, value) => {
+    this.props.updateDraft(name, value);
+    this.props.saveSettings(name, value);
   };
 
   handleSubmit = (formId, values) => {
@@ -508,6 +516,13 @@ class AccountSettingsPage extends React.Component {
       && this.props.formValues.year_of_birth.toString() >= COPPA_COMPLIANCE_YEAR.toString()
       && !localStorage.getItem('submittedDOB')
     );
+
+    const profession = this.props.formValues.extended_profile[0].field_value;
+    const custom_profession = this.props.formValues.extended_profile[1].field_value;
+    // const type_of_organization = this.props.formValues.extended_profile[2].field_value;
+    const organization_name = this.props.formValues.extended_profile[3].field_value;
+    const years_of_experience = this.props.formValues.extended_profile[4].field_value;
+
     return (
       <>
         { shouldUpdateDOB
@@ -675,6 +690,63 @@ class AccountSettingsPage extends React.Component {
           <h2 className="section-heading h4 mb-3">
             {this.props.intl.formatMessage(messages['account.settings.section.profile.information'])}
           </h2>
+
+          <EditableSelectField
+            name="profession"
+            type="select"
+            value={this.props.profession}
+            profession={profession}
+            options={professionOptions}
+            label={this.props.intl.formatMessage(messages['account.settings.field.profession'])}
+            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.profession.empty'])}
+            onChange={this.handleEditableFieldChangeExtended}
+            {...editableFieldProps}
+          />
+          {this.props.formValues.extended_profile[0].field_value == "prof21" &&
+            <EditableField
+              name="custom_profession"
+              type="text"
+              custom_profession={custom_profession}
+              value={this.props.custom_profession}
+              label={this.props.intl.formatMessage(messages['account.settings.field.custom_profession'])}
+              emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.custom_profession.empty'])}
+              onChange={this.handleEditableFieldChangeExtended}
+              {...editableFieldProps}
+            />
+          }
+          {/* <EditableSelectField
+            name="type_of_organization"
+            type="select"
+            value={this.props.type_of_organization}
+            type_of_organization={type_of_organization}
+            options={typeOfOrganizationOptions}
+            label={this.props.intl.formatMessage(messages['account.settings.field.type_of_organization'])}
+            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.type_of_organization.options.empty'])}
+
+            onChange={this.handleEditableFieldChangeExtended}
+            {...editableFieldProps}
+          /> */}
+          <EditableField
+              name="organization_name"
+              type="text"
+              organization_name={organization_name}
+              value={this.props.organization_name}
+              label={this.props.intl.formatMessage(messages['account.settings.field.organization_name'])}
+              emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.organization_name.empty'])}
+              onChange={this.handleEditableFieldChangeExtended}
+              {...editableFieldProps}
+            />
+          <EditableSelectField
+            name="years_of_experience"
+            type="select"
+            value={this.props.years_of_experience}
+            years_of_experience={years_of_experience}
+            options={yearsOfExperienceOptions}
+            label={this.props.intl.formatMessage(messages['account.settings.field.years_of_experience'])}
+            emptyLabel={this.props.intl.formatMessage(messages['account.settings.field.years_of_experience.options.empty'])}
+            onChange={this.handleEditableFieldChangeExtended}
+            {...editableFieldProps}
+          />
 
           <EditableSelectField
             name="level_of_education"
@@ -873,6 +945,11 @@ AccountSettingsPage.propTypes = {
     username: PropTypes.string,
     name: PropTypes.string,
     email: PropTypes.string,
+    profession: PropTypes.string,
+    custom_profession: PropTypes.string,
+    // type_of_organization: PropTypes.string,
+    organization_name: PropTypes.string, 
+    years_of_experience: PropTypes.string,
     secondary_email: PropTypes.string,
     secondary_email_enabled: PropTypes.bool,
     year_of_birth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
