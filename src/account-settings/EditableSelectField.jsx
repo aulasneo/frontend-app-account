@@ -21,7 +21,6 @@ import CertificatePreference from './certificate-preference/CertificatePreferenc
 const EditableSelectField = (props) => {
   const {
     years_of_experience,
-    // type_of_organization,
     profession,
     name,
     label,
