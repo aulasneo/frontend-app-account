@@ -50,6 +50,39 @@ export const WORK_EXPERIENCE_OPTIONS = [
 
 ];
 
+export const PROFESSION_OPTIONS = [
+  '',
+  'Architect',
+  'Engineer',
+  'Contractor',
+  'Surveyor',
+  'Project Manager',
+  'Interior Designer',
+  'Furniture Designer',
+  'Academic',
+  'Finance Controller',
+  'Sustainability Consultant',
+  'Carpenter',
+  'Urban Planner',
+  'Policymaker',
+  'Communications',
+  'Builder',
+  'Tradesperson',
+  'Inspector',
+  'Material Technologist',
+  'Manufacturer',
+  'Urban Planner',
+  'Others'
+];
+
+export const YEARS_OF_EXPERIENCE_OPTIONS = [
+  '',
+  '0-2',
+  '2-5',
+  '5-10',
+  '10+',
+];
+
 export const COUNTRY_WITH_STATES = 'US';
 
 export const TRANSIFEX_LANGUAGE_BASE_URL = 'https://www.transifex.com/open-edx/edx-platform/language/';
