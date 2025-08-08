@@ -25,7 +25,7 @@ const siteLanguageList = [
     released: true,
   },
   {
-    code: 'fr',
+    code: 'fr-CA',
     name: 'Français',
     released: true,
   },
@@ -92,11 +92,6 @@ const siteLanguageList = [
   {
     code: 'hi',
     name: 'Hindi',
-    released: true,
-  },
-  {
-    code: 'fr-ca',
-    name: 'French (CA)',
     released: true,
   },
   {
