@@ -496,7 +496,6 @@ class AccountSettingsPage extends React.Component {
 
     const profession = this.props.formValues.extended_profile[0].field_value;
     const custom_profession = this.props.formValues.extended_profile[1].field_value;
-    // const type_of_organization = this.props.formValues.extended_profile[2].field_value;
     const organization_name = this.props.formValues.extended_profile[3].field_value;
     const years_of_experience = this.props.formValues.extended_profile[4].field_value;
 
