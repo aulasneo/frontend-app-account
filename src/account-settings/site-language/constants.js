@@ -10,6 +10,11 @@ const siteLanguageList = [
     released: true,
   },
   {
+    code: 'az',
+    name: 'Azerbaijani',
+    released: true,
+  },
+  {
     code: 'ca',
     name: 'Català',
     released: false,
