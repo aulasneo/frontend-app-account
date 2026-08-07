@@ -1,0 +1,20 @@
+src/account-settings/site-language/constants.js
+  s_60d65ec93e4518::t_d2bda357bac247 13-16
+  s_60d65ec93e4518::t_53e55e8ece5014 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "190d0ce47130acca5d4a595e38e0abfc64a68532",
+  "prompts": {},
+  "sessions": {
+    "s_60d65ec93e4518": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019fdc21-aaec-7d92-a085-f74be071b115",
+        "model": "gpt-5.6-terra"
+      },
+      "human_author": "Andrés González <andres@aulasneo.com>"
+    }
+  }
+}
